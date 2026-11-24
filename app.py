@@ -8,9 +8,12 @@ def home():
     return render_template(
         "index.html",
         profile=data.PROFILE,
+        strengths=data.STRENGTHS,
+        about=data.ABOUT,
         projects=data.PROJECTS,
         experience=data.EXPERIENCE,
         skills=data.SKILLS,
+        certifications=data.CERTIFICATIONS,
     )
 
 if __name__ == "__main__":

@@ -1,0 +1,3581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navya Singh — B.Sc. Data Science &amp; AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --espresso: #3B2118;
+      --roast: #26140E;
+      --mocha: #633D2E;
+      --cream: #EFE4BE;
+      --ivory: #FAF6EC;
+      --rose: #D6A1A8;
+      --gold: #94803F;
+      --ink: #26140E;
+      --muted: #6E584D;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--espresso);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Graph paper backgrounds */
+    .grid-dark {
+      background-color: var(--espresso);
+      background-image:
+        linear-gradient(rgba(239, 228, 190, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(239, 228, 190, 0.08) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .grid-light {
+      background-color: var(--ivory);
+      background-image:
+        linear-gradient(rgba(59, 33, 24, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 33, 24, 0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .grid-cream {
+      background-color: var(--cream);
+      background-image:
+        linear-gradient(rgba(59, 33, 24, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 33, 24, 0.08) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .serif { font-family: 'Cormorant Garamond', serif; }
+    .script { font-family: 'Caveat', cursive; }
+    .mono { font-family: 'Space Mono', monospace; }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(38, 20, 14, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(239, 228, 190, 0.15);
+      padding: 0.9rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-brand {
+      color: var(--cream);
+      text-decoration: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.6rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--rose); }
+
+    /* Container */
+    .container { max-width: 1120px; margin: 0 auto; padding: 5rem 1.5rem; }
+
+    /* HERO: Binder-Clipped Pass + Scrapbook Doodles */
+    .hero-section {
+      position: relative;
+      padding: 4.5rem 1.5rem 5.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .pass-wrapper {
+      position: relative;
+      max-width: 900px;
+      width: 100%;
+    }
+    /* Floating background doodles on dark grid */
+    .bg-doodle {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.85;
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+    .bg-doodle-1 { top: -18px; left: -36px; width: 26px; animation-delay: 0s; }
+    .bg-doodle-2 { bottom: 24px; right: -42px; width: 32px; animation-delay: 1.5s; }
+    .bg-doodle-3 { top: 45%; left: -48px; width: 22px; animation-delay: 2.5s; }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-7px) rotate(6deg); }
+    }
+
+    .binder-clip {
+      position: absolute;
+      top: -42px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 12;
+      width: 78px;
+      filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.5));
+    }
+    .hero-card {
+      position: relative;
+      background: var(--cream);
+      border: 2px solid var(--roast);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: 0 26px 55px rgba(0, 0, 0, 0.48);
+      transform: rotate(-0.7deg);
+      transition: transform 0.35s ease;
+    }
+    .hero-card:hover { transform: rotate(0deg) translateY(-4px); }
+    .hero-inner {
+      position: relative;
+      border: 1.5px solid rgba(59, 33, 24, 0.32);
+      border-radius: 12px;
+      padding: 3rem 2.8rem;
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    /* Corner star doodle inside pass */
+    .card-corner-star {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      width: 22px;
+      pointer-events: none;
+    }
+    .pass-pill {
+      display: inline-block;
+      background: rgba(214, 161, 168, 0.65);
+      color: var(--roast);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 0.32rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.1rem;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5.2vw, 4.3rem);
+      line-height: 0.94;
+      color: var(--roast);
+      font-weight: 700;
+      margin-bottom: 0.45rem;
+    }
+    .hero-script-row {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-bottom: 1.1rem;
+    }
+    .hero-script {
+      font-family: 'Caveat', cursive;
+      font-size: 2.75rem;
+      line-height: 1;
+      color: var(--roast);
+    }
+    .hero-sub-bar {
+      border-top: 1px solid rgba(59, 33, 24, 0.2);
+      border-bottom: 1px solid rgba(59, 33, 24, 0.2);
+      padding: 0.65rem 0;
+      margin-bottom: 1.2rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      color: var(--mocha);
+      text-transform: uppercase;
+    }
+    .hero-tagline {
+      font-size: 0.98rem;
+      color: var(--espresso);
+      margin-bottom: 1.7rem;
+      max-width: 440px;
+      line-height: 1.6;
+    }
+    .btn-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.78rem 1.45rem;
+      border-radius: 999px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      border: 1.5px solid var(--roast);
+      transition: transform 0.2s, background 0.2s, color 0.2s;
+    }
+    .btn-primary { background: var(--roast); color: var(--cream); }
+    .btn-primary:hover { background: var(--mocha); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--roast); }
+    .btn-outline:hover { background: var(--rose); transform: translateY(-2px); }
+    .btn-icon {
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--roast);
+      color: var(--cream);
+      font-size: 0.85rem;
+    }
+    .btn-icon:hover { background: var(--mocha); transform: translateY(-2px); }
+
+    /* Right Photo + Cute Doodles + Barcode */
+    .hero-photo-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.1rem;
+      position: relative;
+    }
+    .photo-frame-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 265px;
+    }
+    .photo-frame {
+      width: 100%;
+      aspect-ratio: 4 / 4.6;
+      background: var(--ivory);
+      border: 5px solid var(--roast);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 12px 24px rgba(38, 20, 14, 0.16);
+    }
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Polka-dot star sticker overlapping bottom-left of photo */
+    .doodle-star-sticker {
+      position: absolute;
+      bottom: -22px;
+      left: -26px;
+      width: 68px;
+      z-index: 6;
+      filter: drop-shadow(3px 4px 0 rgba(38, 20, 14, 0.22));
+      transition: transform 0.25s ease;
+    }
+    .hero-card:hover .doodle-star-sticker {
+      transform: rotate(-12deg) scale(1.08);
+    }
+    /* Top-right gold star & sparkle doodles around photo */
+    .doodle-top-star {
+      position: absolute;
+      top: -14px;
+      right: -12px;
+      width: 24px;
+      z-index: 6;
+    }
+    .doodle-sparkle {
+      position: absolute;
+      top: 26px;
+      left: -18px;
+      width: 20px;
+      z-index: 6;
+      animation: floatSlow 3.8s ease-in-out infinite;
+    }
+    .barcode-wrap {
+      width: 100%;
+      max-width: 250px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      margin-top: 0.4rem;
+    }
+    .barcode-svg { width: 100%; height: 34px; display: block; }
+    .barcode-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      color: var(--mocha);
+    }
+
+    /* Marquee */
+    .marquee {
+      background: var(--rose);
+      color: var(--roast);
+      border-top: 2px solid var(--roast);
+      border-bottom: 2px solid var(--roast);
+      padding: 0.75rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .marquee-track {
+      display: inline-block;
+      animation: scroll 22s linear infinite;
+    }
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* Approach & Strengths Sticky Notes */
+    .strengths-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .strengths-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+      line-height: 0.96;
+      color: var(--roast);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .strengths-meta {
+      text-align: right;
+      font-family: 'Space Mono', monospace;
+    }
+    .strengths-meta-top {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--roast);
+    }
+    .strengths-meta-hint {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+    .sticky-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      padding-top: 0.5rem;
+    }
+    .sticky-note {
+      position: relative;
+      background: var(--cream);
+      border: 1px solid rgba(59, 33, 24, 0.18);
+      padding: 2.4rem 1.5rem 1.4rem;
+      box-shadow: 0 10px 22px rgba(38, 20, 14, 0.12);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 290px;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+    .sticky-note:nth-child(1) { transform: rotate(-1.6deg); }
+    .sticky-note:nth-child(2) { transform: rotate(1.3deg); }
+    .sticky-note:nth-child(3) { transform: rotate(-1.1deg); }
+    .sticky-note:nth-child(4) { transform: rotate(1.5deg); }
+
+    .sticky-note:hover {
+      transform: translateY(-10px) rotate(0deg) scale(1.02);
+      box-shadow: 0 18px 32px rgba(38, 20, 14, 0.2);
+      z-index: 5;
+    }
+    .sticky-note.highlighted {
+      background: var(--rose);
+      border: 2px solid var(--roast);
+      transform: translateY(-8px) rotate(0deg);
+      box-shadow: 8px 8px 0 var(--roast);
+    }
+    .washi-tape {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-1.5deg);
+      width: 96px;
+      height: 24px;
+      background-color: var(--espresso);
+      background-image: radial-gradient(rgba(250, 246, 236, 0.85) 1.5px, transparent 1.5px);
+      background-size: 16px 12px;
+      opacity: 0.94;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+    }
+    .sticky-note:nth-child(even) .washi-tape {
+      transform: translateX(-50%) rotate(1.8deg);
+    }
+    .sticky-note:nth-child(3) .washi-tape {
+      background-color: var(--mocha);
+    }
+    .sticky-title {
+      font-family: 'Caveat', cursive;
+      font-size: 2.2rem;
+      line-height: 1.05;
+      color: var(--roast);
+      margin-bottom: 0.85rem;
+    }
+    .sticky-text {
+      font-size: 0.92rem;
+      color: var(--espresso);
+      line-height: 1.55;
+      margin-bottom: 1.8rem;
+    }
+    .sticky-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--mocha);
+      letter-spacing: 0.06em;
+    }
+    .sticky-star {
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+
+    /* Section Headings */
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      color: var(--roast);
+      line-height: 1.05;
+    }
+    .section-sub {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--mocha);
+    }
+
+    /* Split About Section */
+    .about-split {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      border-top: 2px solid var(--roast);
+      border-bottom: 2px solid var(--roast);
+      position: relative;
+    }
+    .about-left {
+      background: var(--espresso);
+      color: var(--cream);
+      padding: 4.5rem 3.5rem 3.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .about-kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      color: var(--rose);
+      margin-bottom: 0.7rem;
+    }
+    .about-left h2 {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(3rem, 5vw, 4.2rem);
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+    .about-left h2 span { color: var(--rose); }
+    .about-tabs {
+      display: inline-flex;
+      background: var(--roast);
+      padding: 5px;
+      border-radius: 999px;
+      gap: 4px;
+      margin-bottom: 1.8rem;
+      border: 1px solid rgba(239, 228, 190, 0.2);
+    }
+    .about-tab {
+      background: transparent;
+      color: var(--cream);
+      border: none;
+      padding: 0.5rem 1.1rem;
+      border-radius: 999px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .about-tab.active {
+      background: var(--rose);
+      color: var(--roast);
+    }
+    .about-tab-panel { display: none; }
+    .about-tab-panel.active { display: block; }
+    .about-left p {
+      font-size: 1rem;
+      color: var(--ivory);
+      opacity: 0.92;
+      margin-bottom: 1.2rem;
+      line-height: 1.7;
+    }
+    .about-meta-block {
+      margin-top: 1.4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(239, 228, 190, 0.18);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--cream);
+      opacity: 0.88;
+      line-height: 1.9;
+    }
+    .about-meta-block span { color: var(--rose); }
+    .scrap-note {
+      margin-top: 2.5rem;
+      background: var(--ivory);
+      color: var(--roast);
+      padding: 1.3rem 1.6rem 1.4rem 2.4rem;
+      max-width: 310px;
+      transform: rotate(-2deg);
+      box-shadow: 6px 8px 18px rgba(0, 0, 0, 0.35);
+      position: relative;
+      font-family: 'Caveat', cursive;
+      font-size: 1.55rem;
+      line-height: 1.25;
+      border-bottom: 4px dashed var(--espresso);
+    }
+    .scrap-dots {
+      position: absolute;
+      left: 12px;
+      top: 16px;
+      bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .scrap-dots i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--muted);
+      display: block;
+    }
+    .about-right {
+      padding: 4rem 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+      justify-content: center;
+    }
+    .about-polaroid {
+      position: relative;
+      background: var(--ivory);
+      border: 1.5px solid var(--roast);
+      padding: 12px 12px 18px;
+      width: 245px;
+      box-shadow: 0 14px 28px rgba(38, 20, 14, 0.18);
+      transform: rotate(-2.5deg);
+      margin-left: -4.5rem;
+      z-index: 4;
+    }
+    .about-polaroid img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      border: 1px solid var(--roast);
+    }
+    .polaroid-caption {
+      font-family: 'Caveat', cursive;
+      font-size: 1.3rem;
+      text-align: center;
+      color: var(--roast);
+      margin-top: 0.7rem;
+      line-height: 1.15;
+    }
+    .mini-clip {
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 44px;
+    }
+    .profile-sheet {
+      background: var(--ivory);
+      border: 2px solid var(--roast);
+      box-shadow: 8px 8px 0 var(--roast);
+      padding: 2rem 2.2rem;
+    }
+    .sheet-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      border-bottom: 2px solid var(--roast);
+      padding-bottom: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .sheet-kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--mocha);
+      margin-bottom: 0.25rem;
+    }
+    .profile-sheet h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.85rem;
+      line-height: 1;
+      color: var(--roast);
+    }
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.2rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(59, 33, 24, 0.14);
+      font-size: 0.92rem;
+    }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      color: var(--mocha);
+      flex-shrink: 0;
+    }
+    .spec-val { font-weight: 500; text-align: right; color: var(--roast); }
+    @media (max-width: 820px) {
+      .about-polaroid { margin-left: 0; align-self: center; }
+    }
+
+    /* Experience Ledger */
+    .ledger-frame {
+      background: var(--ivory);
+      border: 2px solid var(--rose);
+      border-radius: 18px;
+      padding: 3rem 2.8rem;
+      box-shadow: 10px 10px 0 var(--roast);
+    }
+    .ledger-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      padding-bottom: 1.6rem;
+      margin-bottom: 2.2rem;
+      border-bottom: 1.5px solid rgba(59, 33, 24, 0.22);
+    }
+    .ledger-kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      color: var(--mocha);
+      margin-bottom: 0.45rem;
+    }
+    .ledger-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+      line-height: 0.96;
+      color: var(--roast);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .exp-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+    .exp-filter-btn {
+      padding: 0.48rem 1rem;
+      border-radius: 999px;
+      border: 1.5px solid rgba(59, 33, 24, 0.35);
+      background: var(--cream);
+      color: var(--roast);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .exp-filter-btn:hover {
+      border-color: var(--roast);
+      transform: translateY(-1px);
+    }
+    .exp-filter-btn.active {
+      background: var(--roast);
+      color: var(--cream);
+      border-color: var(--roast);
+    }
+    .exp-list { display: grid; gap: 1.5rem; }
+    .exp-card {
+      background: var(--cream);
+      border: 2px solid var(--roast);
+      border-radius: 14px;
+      padding: 1.8rem 2rem;
+      box-shadow: 5px 5px 0 var(--roast);
+      transition: transform 0.2s ease;
+    }
+    .exp-card:hover { transform: translate(-2px, -2px); }
+    .exp-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+    }
+    .exp-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+    .exp-badge {
+      padding: 0.24rem 0.72rem;
+      border-radius: 4px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .badge-dark { background: var(--roast); color: var(--cream); }
+    .badge-rose { background: var(--rose); color: var(--roast); }
+    .badge-gold { background: var(--gold); color: var(--ivory); }
+    .badge-mocha { background: var(--mocha); color: var(--cream); }
+    .exp-dates {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--mocha);
+    }
+    .takeaway-btn {
+      padding: 0.45rem 1.05rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--roast);
+      background: var(--ivory);
+      color: var(--roast);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .takeaway-btn:hover {
+      background: var(--roast);
+      color: var(--cream);
+    }
+    .exp-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--roast);
+      line-height: 1.15;
+      margin-bottom: 0.3rem;
+    }
+    .exp-org {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      color: var(--mocha);
+      margin-bottom: 0.9rem;
+    }
+    .exp-summary {
+      font-size: 0.96rem;
+      color: var(--espresso);
+      line-height: 1.6;
+    }
+    .exp-takeaways {
+      display: none;
+      margin-top: 1.35rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(59, 33, 24, 0.2);
+    }
+    .exp-takeaways.open { display: block; }
+    .takeaways-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--mocha);
+      margin-bottom: 0.75rem;
+    }
+    .takeaways-list {
+      list-style: none;
+      display: grid;
+      gap: 0.55rem;
+    }
+    .takeaways-list li {
+      position: relative;
+      padding-left: 1.4rem;
+      font-size: 0.92rem;
+      color: var(--espresso);
+    }
+    .takeaways-list li::before {
+      content: "★";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.85rem;
+    }
+    @media (max-width: 720px) {
+      .ledger-frame { padding: 2rem 1.2rem; }
+      .exp-card { padding: 1.4rem 1.2rem; }
+    }
+
+    /* Featured Projects */
+    .projects-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .projects-kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      color: var(--mocha);
+      margin-bottom: 0.45rem;
+    }
+    .projects-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4.5vw, 3.6rem);
+      line-height: 0.94;
+      color: var(--roast);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+    .filter-btn {
+      padding: 0.5rem 1.05rem;
+      border-radius: 999px;
+      border: 1.5px solid rgba(59, 33, 24, 0.3);
+      background: var(--ivory);
+      color: var(--roast);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .filter-btn:hover { border-color: var(--roast); transform: translateY(-1px); }
+    .filter-btn.active {
+      background: var(--roast);
+      color: var(--cream);
+      border-color: var(--roast);
+    }
+
+    .projects-layout {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .brief-card {
+      position: sticky;
+      top: 90px;
+      background: var(--ivory);
+      border: 2px solid var(--roast);
+      border-radius: 16px;
+      padding: 1.8rem 1.6rem;
+      box-shadow: 7px 7px 0 var(--roast);
+    }
+    .brief-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--mocha);
+      padding-bottom: 0.9rem;
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid rgba(59, 33, 24, 0.16);
+    }
+    .brief-pill {
+      display: inline-block;
+      padding: 0.26rem 0.75rem;
+      border-radius: 999px;
+      background: var(--rose);
+      color: var(--roast);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      margin-bottom: 1rem;
+    }
+    .brief-title {
+      font-family: 'Caveat', cursive;
+      font-size: 2.15rem;
+      line-height: 1.08;
+      color: var(--roast);
+      margin-bottom: 1.2rem;
+    }
+    .brief-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--mocha);
+      margin-bottom: 0.35rem;
+    }
+    .brief-concept {
+      font-size: 0.9rem;
+      color: var(--espresso);
+      line-height: 1.55;
+      margin-bottom: 1.2rem;
+    }
+    .brief-tools {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--roast);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .brief-cta {
+      width: 100%;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0.8rem 1rem;
+      font-size: 0.72rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.8rem;
+    }
+    .project-card {
+      background: var(--ivory);
+      border: 2px solid var(--roast);
+      border-radius: 18px;
+      padding: 1.1rem 1.2rem 1.4rem;
+      box-shadow: 7px 7px 0 var(--roast);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 9px 11px 0 var(--roast);
+    }
+    .screen-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.85rem;
+      padding: 0 0.2rem;
+    }
+    .screen-dots { display: flex; gap: 5px; }
+    .screen-dots i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--mocha);
+      opacity: 0.55;
+      display: block;
+    }
+    .screen-dots i:last-child { background: var(--rose); opacity: 1; }
+    .screen-notch {
+      width: 44px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(59, 33, 24, 0.16);
+    }
+    .screen-cat {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--mocha);
+    }
+    .screen-visual {
+      background: var(--espresso);
+      border-radius: 12px;
+      aspect-ratio: 16 / 11;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      margin-bottom: 1.15rem;
+      overflow: hidden;
+    }
+    .screen-visual svg { width: 100%; height: 100%; }
+    .project-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      line-height: 1.12;
+      color: var(--roast);
+      margin-bottom: 0.55rem;
+    }
+    .project-desc {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.55;
+      margin-bottom: 1.1rem;
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.1rem; }
+    .tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      padding: 0.24rem 0.65rem;
+      background: var(--cream);
+      border: 1px solid rgba(59, 33, 24, 0.25);
+      border-radius: 999px;
+      color: var(--roast);
+      font-weight: 700;
+    }
+    .project-card-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0.85rem;
+      border-top: 1px solid rgba(59, 33, 24, 0.15);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--roast);
+    }
+
+    /* Case Study Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(24, 12, 8, 0.72);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      z-index: 100;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: var(--cream);
+      border: 2px solid var(--roast);
+      border-radius: 20px;
+      max-width: 780px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2.2rem;
+      box-shadow: 12px 12px 0 var(--roast);
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: var(--roast);
+      color: var(--cream);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.7rem);
+      line-height: 1.05;
+      color: var(--roast);
+      margin-bottom: 1.4rem;
+      padding-right: 3rem;
+    }
+    .modal-visual {
+      background: var(--espresso);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 1.6rem;
+      display: flex;
+      justify-content: center;
+    }
+    .modal-visual svg { max-height: 240px; width: 100%; }
+    .modal-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+    .modal-card {
+      background: var(--ivory);
+      border: 1px solid rgba(59, 33, 24, 0.2);
+      border-radius: 12px;
+      padding: 1.3rem 1.4rem;
+    }
+    .modal-card-rose {
+      background: rgba(214, 161, 168, 0.35);
+      border: 1px solid rgba(59, 33, 24, 0.22);
+      border-radius: 12px;
+      padding: 1.3rem 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+    .modal-card-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--mocha);
+      margin-bottom: 0.5rem;
+    }
+    .modal-card p, .modal-card-rose p {
+      font-size: 0.92rem;
+      color: var(--espresso);
+      line-height: 1.6;
+    }
+    .modal-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(59, 33, 24, 0.16);
+    }
+    .modal-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .modal-tag {
+      background: var(--roast);
+      color: var(--cream);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+    }
+    .modal-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--mocha);
+    }
+
+    @media (max-width: 960px) {
+      .projects-layout { grid-template-columns: 1fr; }
+      .brief-card { position: static; }
+    }
+    @media (max-width: 680px) {
+      .projects-grid, .modal-two-col { grid-template-columns: 1fr; }
+    }
+    /* Skills & Craft Board */
+    .skills-frame {
+      background: var(--espresso);
+      border-radius: 22px;
+      padding: 3.2rem 3rem;
+      box-shadow: 10px 10px 0 var(--rose);
+      color: var(--cream);
+    }
+    .skills-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      padding-bottom: 1.6rem;
+      margin-bottom: 2.2rem;
+      border-bottom: 1px solid rgba(239, 228, 190, 0.18);
+    }
+    .skills-kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      color: var(--rose);
+      margin-bottom: 0.45rem;
+    }
+    .skills-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 4.5vw, 3.5rem);
+      line-height: 0.96;
+      color: var(--cream);
+      font-weight: 700;
+    }
+    .skills-title span {
+      font-family: 'Caveat', cursive;
+      color: var(--rose);
+      font-weight: 700;
+      font-size: 1.15em;
+    }
+    .skills-hint {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.76rem;
+      color: rgba(239, 228, 190, 0.8);
+      max-width: 390px;
+      line-height: 1.55;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1.8rem;
+    }
+    .skill-box {
+      background: rgba(38, 20, 14, 0.55);
+      border: 1px solid rgba(239, 228, 190, 0.14);
+      border-radius: 16px;
+      padding: 1.6rem 1.7rem;
+    }
+    .skill-box-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: var(--cream);
+      opacity: 0.85;
+      margin-bottom: 1.1rem;
+    }
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+    .skill-pill {
+      padding: 0.52rem 1.05rem;
+      border-radius: 999px;
+      border: 2px solid transparent;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.2s, color 0.2s;
+    }
+    .skill-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28);
+    }
+    .pill-cream { background: var(--cream); color: var(--roast); }
+    .pill-rose { background: var(--rose); color: var(--roast); }
+    .pill-gold { background: var(--gold); color: var(--ivory); }
+    .pill-ivory { background: var(--ivory); color: var(--roast); }
+
+    .skill-pill.active-skill {
+      background: var(--cream);
+      color: var(--roast);
+      border-color: var(--ivory);
+      box-shadow: 0 0 0 2px var(--roast), 0 0 0 4px var(--cream);
+      transform: translateY(-1px);
+    }
+
+    /* Notebook Margin Note Banner */
+    .margin-note-box {
+      background: var(--cream);
+      color: var(--roast);
+      border-radius: 16px;
+      padding: 1.45rem 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+    }
+    .margin-note-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-right: 1.6rem;
+      border-right: 1px solid rgba(59, 33, 24, 0.22);
+      flex-shrink: 0;
+      min-width: 225px;
+    }
+    .margin-star {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--roast);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .margin-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.66rem;
+      letter-spacing: 0.1em;
+      color: var(--mocha);
+      margin-bottom: 0.15rem;
+    }
+    .margin-skill-name {
+      font-family: 'Caveat', cursive;
+      font-size: 1.95rem;
+      line-height: 1;
+      color: var(--roast);
+    }
+    .margin-note-text {
+      font-size: 0.94rem;
+      color: var(--espresso);
+      line-height: 1.55;
+    }
+    @media (max-width: 820px) {
+      .skills-frame { padding: 2rem 1.3rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .margin-note-box { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .margin-note-left { border-right: none; border-bottom: 1px solid rgba(59, 33, 24, 0.22); padding-right: 0; padding-bottom: 0.85rem; width: 100%; }
+    }
+
+    /* Certifications */
+    .certs-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .certs-kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      color: var(--mocha);
+      margin-bottom: 0.45rem;
+    }
+    .certs-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 4.5vw, 3.5rem);
+      line-height: 0.96;
+      color: var(--roast);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .certs-hint {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+      gap: 1.5rem;
+    }
+    .cert-card {
+      background: var(--cream);
+      border: 2px solid var(--roast);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 6px 6px 0 var(--roast);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 255px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .cert-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 8px 10px 0 var(--roast);
+    }
+    .cert-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .cert-year {
+      background: var(--roast);
+      color: var(--cream);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.65rem;
+      border-radius: 4px;
+    }
+    .cert-star {
+      color: var(--gold);
+      font-size: 1.15rem;
+    }
+    .cert-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      line-height: 1.15;
+      color: var(--roast);
+      font-weight: 700;
+      margin-bottom: 0.65rem;
+    }
+    .cert-issuer {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--mocha);
+      line-height: 1.5;
+      margin-bottom: 1.4rem;
+    }
+    .cert-btn {
+      width: 100%;
+      padding: 0.65rem 1rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--roast);
+      background: var(--ivory);
+      color: var(--roast);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .cert-btn:hover {
+      background: var(--roast);
+      color: var(--cream);
+    }
+
+    /* Certificate Preview Modal */
+    .cert-modal-box {
+      background: var(--cream);
+      border: 2px solid var(--roast);
+      border-radius: 20px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 1.8rem;
+      box-shadow: 12px 12px 0 var(--roast);
+      position: relative;
+    }
+    .cert-modal-inner {
+      background: var(--ivory);
+      border: 2px dashed rgba(59, 33, 24, 0.35);
+      border-radius: 14px;
+      padding: 2rem;
+    }
+    .cert-modal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1rem;
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid rgba(59, 33, 24, 0.16);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: var(--mocha);
+    }
+    .cert-awarded {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--mocha);
+      margin-bottom: 0.4rem;
+    }
+    .cert-modal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.5rem);
+      line-height: 1.08;
+      color: var(--roast);
+      margin-bottom: 0.4rem;
+    }
+    .cert-modal-issuer {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--espresso);
+      padding-bottom: 1.2rem;
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid rgba(59, 33, 24, 0.16);
+    }
+    .cert-modal-desc {
+      font-size: 0.96rem;
+      color: var(--espresso);
+      line-height: 1.65;
+      margin-bottom: 1.3rem;
+    }
+    .cert-real-preview {
+      margin: 1.2rem 0 1.4rem;
+      border: 2px solid var(--roast);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--cream);
+      display: none;
+    }
+    .cert-real-preview img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .cert-real-preview iframe {
+      width: 100%;
+      height: 360px;
+      border: none;
+      display: block;
+    }
+    .cert-modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .cert-modal-tag {
+      background: rgba(214, 161, 168, 0.55);
+      border: 1px solid rgba(59, 33, 24, 0.35);
+      color: var(--roast);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.32rem 0.85rem;
+      border-radius: 999px;
+    }
+    .cert-modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    /* 07 // Stationery Postcard & Footer */
+    .postcard-outer {
+      background: var(--cream);
+      border-radius: 22px;
+      padding: 14px;
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.42);
+    }
+    .postcard {
+      border: 1.5px dashed rgba(59, 33, 24, 0.28);
+      border-radius: 16px;
+      padding: 3rem 2.8rem;
+      display: grid;
+      grid-template-columns: 0.95fr 1.15fr;
+      gap: 3rem;
+      align-items: start;
+      position: relative;
+    }
+    .postcard-stamp {
+      position: absolute;
+      top: 1.6rem;
+      right: 1.8rem;
+      width: 68px;
+      height: 76px;
+      border: 2px dashed rgba(59, 33, 24, 0.3);
+      border-radius: 6px;
+      pointer-events: none;
+    }
+    .postcard-kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      color: var(--mocha);
+      margin-bottom: 0.7rem;
+    }
+    .postcard-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 3.8vw, 3rem);
+      line-height: 1.02;
+      color: var(--roast);
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+    .postcard-script {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(2.4rem, 4vw, 3.1rem);
+      color: var(--roast);
+      line-height: 1.05;
+      margin-bottom: 1.2rem;
+    }
+    .postcard-desc {
+      font-size: 0.94rem;
+      color: var(--espresso);
+      line-height: 1.65;
+      margin-bottom: 1.8rem;
+    }
+    .contact-item {
+      background: var(--ivory);
+      border: 1px solid rgba(59, 33, 24, 0.22);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    a.contact-item:hover {
+      border-color: var(--roast);
+      transform: translateY(-2px);
+    }
+    .contact-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.66rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mocha);
+      margin-bottom: 0.2rem;
+    }
+    .contact-value {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--roast);
+      word-break: break-all;
+    }
+    .copy-pill {
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--roast);
+      color: var(--cream);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .copy-pill:hover { background: var(--mocha); }
+    .contact-location {
+      background: rgba(214, 161, 168, 0.42);
+      border: 1px solid rgba(59, 33, 24, 0.18);
+      border-radius: 12px;
+      padding: 0.95rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--roast);
+      line-height: 1.5;
+    }
+    .location-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--roast);
+      flex-shrink: 0;
+    }
+
+    /* Right Form Card */
+    .postcard-form-card {
+      background: var(--ivory);
+      border: 2px solid var(--roast);
+      border-radius: 18px;
+      padding: 2rem;
+      box-shadow: 8px 8px 0 var(--roast);
+      position: relative;
+      z-index: 2;
+    }
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-group { margin-bottom: 1.15rem; }
+    .form-group label {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--roast);
+      margin-bottom: 0.45rem;
+    }
+    .postcard-form-card input,
+    .postcard-form-card select,
+    .postcard-form-card textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid rgba(59, 33, 24, 0.25);
+      border-radius: 10px;
+      background: rgba(239, 228, 190, 0.55);
+      color: var(--roast);
+      font-family: inherit;
+      font-size: 0.92rem;
+      outline: none;
+    }
+    .postcard-form-card input:focus,
+    .postcard-form-card select:focus,
+    .postcard-form-card textarea:focus {
+      border-color: var(--roast);
+      background: var(--ivory);
+    }
+    .form-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .form-note {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+    .send-pill {
+      padding: 0.78rem 1.5rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--roast);
+      color: var(--cream);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .send-pill:hover { background: var(--mocha); transform: translateY(-2px); }
+
+    /* Footer */
+    footer {
+      background: var(--roast);
+      color: var(--cream);
+      border-top: 1px solid rgba(239, 228, 190, 0.14);
+      padding: 1.8rem 5%;
+    }
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .footer-script {
+      font-family: 'Caveat', cursive;
+      font-size: 1.85rem;
+      color: var(--cream);
+      line-height: 1;
+    }
+    .footer-meta {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: rgba(239, 228, 190, 0.65);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: rgba(239, 228, 190, 0.78);
+      text-decoration: none;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+    }
+    .footer-links a:hover { color: var(--rose); }
+    .top-pill {
+      padding: 0.55rem 1.15rem;
+      border-radius: 999px;
+      border: 1px solid rgba(239, 228, 190, 0.28);
+      color: var(--cream);
+      text-decoration: none;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      transition: background 0.2s, color 0.2s;
+    }
+    .top-pill:hover { background: var(--cream); color: var(--roast); }
+
+    @media (max-width: 820px) {
+      .postcard, .form-row-2 { grid-template-columns: 1fr; }
+      .postcard { padding: 2rem 1.4rem; }
+      .postcard-stamp { display: none; }
+    }
+
+    /* === ANIMATED BEEHIVE & SKILL BEES === */
+    body { position: relative; }
+
+    #bee-flight-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 45;
+      overflow: hidden;
+    }
+
+    /* Beehives */
+    .beehive-anchor {
+      position: absolute;
+      z-index: 15;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      user-select: none;
+    }
+    .hero-hive {
+      top: 22px;
+      right: 4%;
+      cursor: default;
+    }
+    .skills-hive {
+      position: relative;
+      cursor: pointer;
+      padding: 0.4rem 0.7rem;
+      border-radius: 16px;
+      background: rgba(239, 228, 190, 0.08);
+      border: 1.5px dashed rgba(239, 228, 190, 0.35);
+      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    }
+    .skills-hive:hover {
+      transform: scale(1.07);
+      background: rgba(239, 228, 190, 0.16);
+      box-shadow: 0 0 22px rgba(244, 208, 111, 0.35);
+    }
+    .hive-svg {
+      width: 104px;
+      height: 104px;
+      transform-origin: top center;
+      animation: hiveSway 4s ease-in-out infinite;
+      filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.35));
+    }
+    .hive-pulse {
+      animation: hivePop 0.35s ease !important;
+    }
+    .hive-badge {
+      margin-top: 4px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--cream);
+      background: var(--roast);
+      border: 1px solid rgba(239, 228, 190, 0.35);
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    @keyframes hiveSway {
+      0%, 100% { transform: rotate(-2.5deg); }
+      50% { transform: rotate(2.5deg); }
+    }
+    @keyframes hivePop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.16); }
+      100% { transform: scale(1); }
+    }
+
+    /* Individual Flying Skill Bees */
+    .skill-bee {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: auto;
+      cursor: pointer;
+      will-change: transform, opacity;
+      transition: filter 0.2s ease;
+    }
+    .bee-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--roast);
+      background: var(--cream);
+      border: 1.5px solid var(--roast);
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      white-space: nowrap;
+      margin-bottom: 4px;
+      box-shadow: 2px 2px 0 rgba(38, 20, 14, 0.35);
+      transition: all 0.2s ease;
+    }
+    .bee-body-svg {
+      width: 48px;
+      height: 38px;
+      transition: transform 0.2s ease;
+    }
+    .bee-wing {
+      transform-origin: center bottom;
+      animation: wingFlutter 0.14s ease-in-out infinite alternate;
+    }
+    @keyframes wingFlutter {
+      from { transform: rotate(-18deg) scaleY(0.95); }
+      to { transform: rotate(18deg) scaleY(1.08); }
+    }
+
+    /* Hover Illumination */
+    .skill-bee:hover {
+      z-index: 90;
+      filter: drop-shadow(0 0 12px rgba(247, 213, 107, 0.95));
+    }
+    .skill-bee:hover .bee-label {
+      background: #FFF3B0;
+      color: #26140E;
+      border-color: #94803F;
+      box-shadow: 0 0 16px rgba(247, 213, 107, 0.95);
+      transform: scale(1.12);
+    }
+    .skill-bee:hover .bee-body-svg {
+      transform: scale(1.18);
+    }
+
+    @media (max-width: 720px) {
+      .hero-hive { top: 8px; right: 10px; }
+      .hive-svg { width: 56px; height: 56px; }
+    }
+
+  
+  </style>
+</head>
+<body>
+
+  <!-- FULL-PAGE BEE FLIGHT LAYER -->
+  <div id="bee-flight-layer" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#home" class="nav-brand">Navya Singh</a>
+    <ul class="nav-links">
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="hero-section grid-dark">
+    <!-- STARTING BEEHIVE -->
+    <div id="heroHive" class="beehive-anchor hero-hive" title="Skills flying out!">
+      <svg class="hive-svg" viewBox="0 0 80 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 4 L40 16" stroke="#633D2E" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="40" cy="24" rx="16" ry="8" fill="#E2B857" stroke="#3B2118" stroke-width="2.5"/>
+        <ellipse cx="40" cy="36" rx="24" ry="10" fill="#D4A343" stroke="#3B2118" stroke-width="2.5"/>
+        <ellipse cx="40" cy="49" rx="28" ry="11" fill="#E2B857" stroke="#3B2118" stroke-width="2.5"/>
+        <ellipse cx="40" cy="62" rx="24" ry="10" fill="#C99335" stroke="#3B2118" stroke-width="2.5"/>
+        <ellipse cx="40" cy="72" rx="16" ry="7" fill="#B57E28" stroke="#3B2118" stroke-width="2.5"/>
+        <path d="M33 62 C33 54, 47 54, 47 62 L47 68 L33 68 Z" fill="#26140E"/>
+      </svg>
+      <span class="hive-badge">SKILL HIVE</span>
+    </div>
+    <div class="pass-wrapper">
+      <!-- Floating Background Doodles -->
+      <svg class="bg-doodle bg-doodle-1" viewBox="0 0 24 24" fill="#94803F">
+        <path d="M12 2l2.6 6.8L22 9.4l-5.6 4.7 1.8 7.1L12 17.3l-6.2 3.9 1.8-7.1L2 9.4l7.4-.6z"/>
+      </svg>
+      <svg class="bg-doodle bg-doodle-2" viewBox="0 0 32 32" fill="none">
+        <path d="M16 3L18.5 13.5L29 16L18.5 18.5L16 29L13.5 18.5L3 16L13.5 13.5L16 3Z" fill="#D6A1A8"/>
+      </svg>
+      <svg class="bg-doodle bg-doodle-3" viewBox="0 0 24 24" fill="none" stroke="#EFE4BE" stroke-width="2" stroke-linecap="round">
+        <path d="M4 14c3-5 6 5 9 0s5 4 7-2"/>
+      </svg>
+
+      <!-- Metallic Binder Clip -->
+      <svg class="binder-clip" viewBox="0 0 84 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="metalGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#E6E9EF"/>
+            <stop offset="50%" stop-color="#B9C0CC"/>
+            <stop offset="100%" stop-color="#7B8494"/>
+          </linearGradient>
+        </defs>
+        <path d="M27 28C27 11 33 5 42 5C51 5 57 11 57 28" stroke="#D2D6DE" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M31 28C31 15 35 10 42 10C49 10 53 15 53 28" stroke="#8C93A0" stroke-width="2.5" stroke-linecap="round"/>
+        <rect x="16" y="26" width="52" height="34" rx="5" fill="url(#metalGrad)" stroke="#3B2118" stroke-width="2"/>
+        <rect x="22" y="33" width="40" height="4" rx="2" fill="#FAF6EC" opacity="0.7"/>
+      </svg>
+
+      <div class="hero-card">
+        <div class="hero-inner">
+          <!-- Top-left tiny gold star doodle -->
+          <svg class="card-corner-star" viewBox="0 0 24 24" fill="#94803F">
+            <path d="M12 2l2.6 6.8L22 9.4l-5.6 4.7 1.8 7.1L12 17.3l-6.2 3.9 1.8-7.1L2 9.4l7.4-.6z"/>
+          </svg>
+
+          <div>
+            <span class="pass-pill">UNDERGRADUATE PASS • VOL. 01</span>
+            <h1 class="hero-title">DATA &amp; AI<br>PORTFOLIO</h1>
+
+            <div class="hero-script-row">
+              <div class="hero-script">Navya Singh</div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#94803F">
+                <path d="M12 2l2.6 6.8L22 9.4l-5.6 4.7 1.8 7.1L12 17.3l-6.2 3.9 1.8-7.1L2 9.4l7.4-.6z"/>
+              </svg>
+            </div>
+
+            <div class="hero-sub-bar">
+              B.Sc. Data Science &amp; AI • IIM Sambalpur (2025–2029)
+            </div>
+
+            <p class="hero-tagline">Exploring the world of Data, AI &amp; everything in between.</p>
+
+            <div class="btn-row">
+              <a href="#projects" class="btn btn-primary">Explore My Work →</a>
+              <a href="#contact" class="btn btn-outline">Get in Touch</a>
+              
+              <a href="https://www.linkedin.com/in/navya-singh-2b2927387/" target="_blank" rel="noopener noreferrer" class="btn btn-icon" title="LinkedIn">in</a>
+              
+              
+              <a href="https://github.com/nays280906-beep" target="_blank" rel="noopener noreferrer" class="btn btn-icon" title="GitHub">GH</a>
+              
+            </div>
+          </div>
+
+          <div class="hero-photo-box">
+            <div class="photo-frame-wrap">
+              <!-- Top-right star doodle -->
+              <svg class="doodle-top-star" viewBox="0 0 24 24" fill="#94803F">
+                <path d="M12 2l2.6 6.8L22 9.4l-5.6 4.7 1.8 7.1L12 17.3l-6.2 3.9 1.8-7.1L2 9.4l7.4-.6z"/>
+              </svg>
+
+              <!-- Sparkle doodle -->
+              <svg class="doodle-sparkle" viewBox="0 0 24 24" fill="#94803F">
+                <path d="M12 2L14 10L22 12L14 14L12 22L10 14L2 12L10 10L12 2Z"/>
+              </svg>
+
+              <div class="photo-frame">
+                <img src="static/navya.png" alt="Navya Singh" />
+              </div>
+
+              <!-- Cute Polka-Dot Star Sticker -->
+              <svg class="doodle-star-sticker" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <pattern id="polkaDots" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <rect width="10" height="10" fill="#FAF6EC"/>
+                    <circle cx="5" cy="5" r="1.7" fill="#3B2118"/>
+                  </pattern>
+                </defs>
+                <path d="M40 6 L49 27 L72 29 L54 44 L60 67 L40 54 L20 67 L26 44 L8 29 L31 27 Z"
+                      fill="url(#polkaDots)" stroke="#3B2118" stroke-width="2.5" stroke-linejoin="round"/>
+              </svg>
+            </div>
+
+            <!-- Real SVG Barcode -->
+            <div class="barcode-wrap">
+              <svg class="barcode-svg" viewBox="0 0 220 34" fill="#26140E" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="0" width="4" height="34"/><rect x="9" y="0" width="2" height="34"/>
+                <rect x="15" y="0" width="5" height="34"/><rect x="24" y="0" width="2" height="34"/>
+                <rect x="29" y="0" width="3" height="34"/><rect x="36" y="0" width="6" height="34"/>
+                <rect x="46" y="0" width="2" height="34"/><rect x="52" y="0" width="4" height="34"/>
+                <rect x="60" y="0" width="2" height="34"/><rect x="66" y="0" width="5" height="34"/>
+                <rect x="75" y="0" width="3" height="34"/><rect x="82" y="0" width="2" height="34"/>
+                <rect x="88" y="0" width="6" height="34"/><rect x="98" y="0" width="2" height="34"/>
+                <rect x="104" y="0" width="4" height="34"/><rect x="112" y="0" width="3" height="34"/>
+                <rect x="119" y="0" width="2" height="34"/><rect x="125" y="0" width="5" height="34"/>
+                <rect x="134" y="0" width="2" height="34"/><rect x="140" y="0" width="4" height="34"/>
+                <rect x="148" y="0" width="6" height="34"/><rect x="158" y="0" width="2" height="34"/>
+                <rect x="164" y="0" width="3" height="34"/><rect x="171" y="0" width="5" height="34"/>
+                <rect x="180" y="0" width="2" height="34"/><rect x="186" y="0" width="4" height="34"/>
+                <rect x="194" y="0" width="2" height="34"/><rect x="200" y="0" width="6" height="34"/>
+                <rect x="210" y="0" width="3" height="34"/><rect x="216" y="0" width="2" height="34"/>
+              </svg>
+              <div class="barcode-text">IIM-SBP // 2025–2029</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track">
+      ★ IIM Sambalpur ★ B.Sc. Data Science &amp; AI ★ DATA ANALYTICS ★ ARTIFICIAL INTELLIGENCE ★ RESEARCH ★ SOCIAL IMPACT ★ IIM Sambalpur ★ B.Sc. Data Science &amp; AI ★ DATA ANALYTICS ★ ARTIFICIAL INTELLIGENCE ★ RESEARCH ★ SOCIAL IMPACT
+    </div>
+  </div>
+
+  <!-- APPROACH & STRENGTHS -->
+  <section id="approach" class="grid-light">
+    <div class="container">
+      <div class="strengths-head">
+        <h2 class="strengths-title">MY APPROACH &amp;<br>STRENGTHS</h2>
+        <div class="strengths-meta">
+          <div class="strengths-meta-top">DATA + CURIOSITY + REAL-WORLD IMPACT</div>
+          <div class="strengths-meta-hint">Hover to lift • click any note to highlight</div>
+        </div>
+      </div>
+
+      <div class="sticky-grid">
+        
+        <div class="sticky-note" onclick="this.classList.toggle('highlighted')">
+          <div class="washi-tape"></div>
+          <div>
+            <h3 class="sticky-title">Curious</h3>
+            <p class="sticky-text">Always eager to ask better questions—connecting B.Sc. Data Science &amp; AI coursework with how systems work in practice.</p>
+          </div>
+          <div class="sticky-footer">
+            <span>01 // INQUIRY</span>
+            <span class="sticky-star">★</span>
+          </div>
+        </div>
+        
+        <div class="sticky-note" onclick="this.classList.toggle('highlighted')">
+          <div class="washi-tape"></div>
+          <div>
+            <h3 class="sticky-title">Analytical</h3>
+            <p class="sticky-text">Building strong foundations in statistics, Python, and structured reasoning to turn raw data into clear, honest insights.</p>
+          </div>
+          <div class="sticky-footer">
+            <span>02 // CRAFT</span>
+            <span class="sticky-star">★</span>
+          </div>
+        </div>
+        
+        <div class="sticky-note" onclick="this.classList.toggle('highlighted')">
+          <div class="washi-tape"></div>
+          <div>
+            <h3 class="sticky-title">Versatile</h3>
+            <p class="sticky-text">Gaining hands-on exposure across a US-based organisation, corporate CSR, NGOs, research projects, and business development.</p>
+          </div>
+          <div class="sticky-footer">
+            <span>03 // EXPOSURE</span>
+            <span class="sticky-star">★</span>
+          </div>
+        </div>
+        
+        <div class="sticky-note" onclick="this.classList.toggle('highlighted')">
+          <div class="washi-tape"></div>
+          <div>
+            <h3 class="sticky-title">Impact-Driven</h3>
+            <p class="sticky-text">Drawn to projects where data, thoughtful research, and technology genuinely serve people and communities.</p>
+          </div>
+          <div class="sticky-footer">
+            <span>04 // PURPOSE</span>
+            <span class="sticky-star">★</span>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about-split">
+    <div class="about-left">
+      <div>
+        <div class="about-kicker">02 // ABOUT ME</div>
+        <h2>Hey, I'm <span>Navya</span></h2>
+
+        <div class="about-tabs">
+          <button class="about-tab active" onclick="switchAboutTab('story', this)">MY STORY</button>
+          <button class="about-tab" onclick="switchAboutTab('learning', this)">CURRENTLY LEARNING</button>
+        </div>
+
+        <div id="tab-story" class="about-tab-panel active">
+          <p>I&#39;m a second-year undergraduate pursuing a B.Sc. in Data Science &amp; Artificial Intelligence at the Indian Institute of Management Sambalpur (2025–2029).</p>
+          <p>Along with building strong academic foundations in analytics and AI, I&#39;ve been fortunate to gain practical exposure across varied settings—including a US-based organisation, corporate CSR initiatives, NGOs, research-oriented projects, and business development.</p>
+        </div>
+
+        <div id="tab-learning" class="about-tab-panel">
+          <p>Right now, I&#39;m strengthening my fundamentals in Python, SQL, probability &amp; statistics, and introductory machine learning through coursework and hands-on lab notebooks.</p>
+          <p>I&#39;m especially curious about how structured research, clean data storytelling, and thoughtful AI prototypes can support real-world decisions in social impact and business contexts.</p>
+        </div>
+
+        <div class="about-meta-block">
+          <div><span>EMAIL:</span> NAYS280906@GMAIL.COM</div>
+          <div><span>INSTITUTION:</span> IIM SAMBALPUR (2025–2029)</div>
+        </div>
+      </div>
+
+      <div class="scrap-note">
+        <div class="scrap-dots"><i></i><i></i><i></i><i></i><i></i></div>
+        Always learning, building &amp; asking better questions ✨
+      </div>
+    </div>
+
+    <div class="about-right grid-cream">
+      <div class="about-polaroid">
+        <svg class="mini-clip" viewBox="0 0 60 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 18C20 8 24 4 30 4C36 4 40 8 40 18" stroke="#C8C8C8" stroke-width="3.5" stroke-linecap="round"/>
+          <rect x="12" y="16" width="36" height="22" rx="3" fill="#B8C0CC" stroke="#3B2118" stroke-width="2"/>
+        </svg>
+        <img src="static/navya.png" alt="Navya Singh" />
+        <div class="polaroid-caption">IIM Sambalpur • Campus Notes</div>
+      </div>
+
+      <div class="profile-sheet">
+        <div class="sheet-head">
+          <div>
+            <div class="sheet-kicker">EDITORIAL DOSSIER // 2025–2029</div>
+            <h3>STUDENT PROFILE</h3>
+          </div>
+          <span class="pill">2ND YEAR</span>
+        </div>
+
+        
+        <div class="spec-row">
+          <span class="spec-label">DEGREE</span>
+          <span class="spec-val">B.Sc. Data Science &amp; AI</span>
+        </div>
+        
+        <div class="spec-row">
+          <span class="spec-label">INSTITUTION</span>
+          <span class="spec-val">IIM Sambalpur</span>
+        </div>
+        
+        <div class="spec-row">
+          <span class="spec-label">COHORT</span>
+          <span class="spec-val">2025 – 2029 (2nd Year)</span>
+        </div>
+        
+        <div class="spec-row">
+          <span class="spec-label">CORE FOCUS</span>
+          <span class="spec-val">Data Analytics, AI/ML, Research</span>
+        </div>
+        
+        <div class="spec-row">
+          <span class="spec-label">EXPOSURE</span>
+          <span class="spec-val">US-Based Org, Corporate CSR, NGOs, BizDev</span>
+        </div>
+        
+        <div class="spec-row">
+          <span class="spec-label">LOCATION</span>
+          <span class="spec-val">Sambalpur, India</span>
+        </div>
+        
+        <div class="spec-row">
+          <span class="spec-label">STATUS</span>
+          <span class="spec-val">Open to Internships &amp; Research Collabs</span>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="grid-light">
+    <div class="container">
+      <div class="ledger-frame">
+        <div class="ledger-head">
+          <div>
+            <div class="ledger-kicker">03 // PRACTICAL EXPOSURE &amp; LEARNING</div>
+            <h2 class="ledger-title">EXPERIENCE<br>LEDGER</h2>
+          </div>
+
+          <div class="exp-filters">
+            <button class="exp-filter-btn active" onclick="filterExperience('all', this)">ALL</button>
+            
+            
+              
+                
+                <button class="exp-filter-btn" onclick="filterExperience('INTERNATIONAL', this)">INTERNATIONAL</button>
+              
+            
+              
+                
+                <button class="exp-filter-btn" onclick="filterExperience('CSR &amp; NGO', this)">CSR &amp; NGO</button>
+              
+            
+              
+                
+                <button class="exp-filter-btn" onclick="filterExperience('RESEARCH', this)">RESEARCH</button>
+              
+            
+              
+                
+                <button class="exp-filter-btn" onclick="filterExperience('BUSINESS', this)">BUSINESS</button>
+              
+            
+          </div>
+        </div>
+
+        <div class="exp-list">
+          
+          <div class="exp-card" data-exp-cat="INTERNATIONAL">
+            <div class="exp-card-top">
+              <div class="exp-badge-row">
+                <span class="exp-badge badge-dark">INTERNATIONAL</span>
+                <span class="exp-dates">2025 – 2026</span>
+              </div>
+              <button class="takeaway-btn" onclick="toggleTakeaways(this)">READ KEY TAKEAWAYS +</button>
+            </div>
+
+            <div class="exp-role">Remote Contributor &amp; Research Intern</div>
+            <div class="exp-org">US-BASED ORGANISATION (REMOTE)</div>
+            <p class="exp-summary">Collaborated with an international remote team on structured research documentation, data organization, and cross-functional task workflows.</p>
+
+            
+            <div class="exp-takeaways">
+              <div class="takeaways-label">WHAT I LEARNED &amp; CONTRIBUTED</div>
+              <ul class="takeaways-list">
+                
+                <li>Practiced asynchronous communication, clear written reporting, and meeting deadlines across time zones.</li>
+                
+                <li>Assisted in cleaning and organizing qualitative and spreadsheet-based research inputs for team review.</li>
+                
+                <li>Learned how fast-moving international teams structure weekly priorities and feedback loops.</li>
+                
+              </ul>
+            </div>
+            
+          </div>
+          
+          <div class="exp-card" data-exp-cat="CSR &amp; NGO">
+            <div class="exp-card-top">
+              <div class="exp-badge-row">
+                <span class="exp-badge badge-rose">CSR &amp; NGO</span>
+                <span class="exp-dates">2025</span>
+              </div>
+              <button class="takeaway-btn" onclick="toggleTakeaways(this)">READ KEY TAKEAWAYS +</button>
+            </div>
+
+            <div class="exp-role">Corporate CSR Initiative Volunteer &amp; Analyst</div>
+            <div class="exp-org">CORPORATE SOCIAL RESPONSIBILITY PROGRAM</div>
+            <p class="exp-summary">Supported community outreach coordination and helped structure baseline participation data for a corporate CSR initiative.</p>
+
+            
+            <div class="exp-takeaways">
+              <div class="takeaways-label">WHAT I LEARNED &amp; CONTRIBUTED</div>
+              <ul class="takeaways-list">
+                
+                <li>Helped organize beneficiary attendance and program feedback into structured tracking sheets.</li>
+                
+                <li>Observed how corporate CSR teams measure social impact and report outcomes to stakeholders.</li>
+                
+                <li>Built practical communication skills while coordinating between volunteers and local partners.</li>
+                
+              </ul>
+            </div>
+            
+          </div>
+          
+          <div class="exp-card" data-exp-cat="RESEARCH">
+            <div class="exp-card-top">
+              <div class="exp-badge-row">
+                <span class="exp-badge badge-gold">RESEARCH</span>
+                <span class="exp-dates">2025 – Present</span>
+              </div>
+              <button class="takeaway-btn" onclick="toggleTakeaways(this)">READ KEY TAKEAWAYS +</button>
+            </div>
+
+            <div class="exp-role">NGO Data &amp; Community Research Fellow</div>
+            <div class="exp-org">NON-PROFIT &amp; GRASSROOTS RESEARCH INITIATIVE</div>
+            <p class="exp-summary">Worked alongside NGO volunteers to design clear community survey questionnaires and synthesize findings into readable briefs.</p>
+
+            
+            <div class="exp-takeaways">
+              <div class="takeaways-label">WHAT I LEARNED &amp; CONTRIBUTED</div>
+              <ul class="takeaways-list">
+                
+                <li>Translated open-ended field observations into clean, analyzable survey formats.</li>
+                
+                <li>Summarized community feedback into concise briefs for grassroots program planning.</li>
+                
+                <li>Gained first-hand appreciation for ethical data collection in real-world social settings.</li>
+                
+              </ul>
+            </div>
+            
+          </div>
+          
+          <div class="exp-card" data-exp-cat="BUSINESS">
+            <div class="exp-card-top">
+              <div class="exp-badge-row">
+                <span class="exp-badge badge-mocha">BUSINESS</span>
+                <span class="exp-dates">2025</span>
+              </div>
+              <button class="takeaway-btn" onclick="toggleTakeaways(this)">READ KEY TAKEAWAYS +</button>
+            </div>
+
+            <div class="exp-role">Business Development &amp; Strategy Intern</div>
+            <div class="exp-org">GROWTH &amp; PARTNERSHIPS EXPOSURE</div>
+            <p class="exp-summary">Explored the intersection of business communication, market research, and client outreach while supporting early-stage growth tasks.</p>
+
+            
+            <div class="exp-takeaways">
+              <div class="takeaways-label">WHAT I LEARNED &amp; CONTRIBUTED</div>
+              <ul class="takeaways-list">
+                
+                <li>Conducted background research on prospective partners and market segments.</li>
+                
+                <li>Drafted structured outreach notes and assisted with partnership tracking pipelines.</li>
+                
+                <li>Connected analytical thinking with practical business goals and stakeholder needs.</li>
+                
+              </ul>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="grid-cream" style="border-top: 2px solid var(--roast);">
+    <div class="container">
+      <div class="projects-head">
+        <div>
+          <div class="projects-kicker">04 // SELECTED UNDERGRADUATE WORK</div>
+          <h2 class="projects-title">FEATURED<br>PROJECTS</h2>
+        </div>
+
+        <div class="filter-bar" id="filterBar">
+          <button class="filter-btn active" onclick="filterProjects('all', this)">ALL</button>
+          
+          
+            
+              
+              <button class="filter-btn" onclick="filterProjects('DATA &amp; ANALYTICS', this)">DATA &amp; ANALYTICS</button>
+            
+          
+            
+              
+              <button class="filter-btn" onclick="filterProjects('AI &amp; ML', this)">AI &amp; ML</button>
+            
+          
+            
+              
+              <button class="filter-btn" onclick="filterProjects('RESEARCH', this)">RESEARCH</button>
+            
+          
+            
+          
+        </div>
+      </div>
+
+      <div class="projects-layout">
+        <!-- Left Sticky Project Brief -->
+        
+        <aside class="brief-card" id="projectBrief">
+          <div class="brief-top">
+            <span>PROJECT BRIEF</span>
+            <span style="color: var(--gold); font-size: 1rem;">★</span>
+          </div>
+          <span class="brief-pill" id="briefCat">DATA &amp; ANALYTICS</span>
+          <h3 class="brief-title" id="briefTitle">Social Impact &amp; CSR Metrics Dashboard</h3>
+
+          <div class="brief-label">CONCEPT</div>
+          <p class="brief-concept" id="briefConcept">Structured exploratory dashboard organizing community outreach indicators and volunteer participation trends.</p>
+
+          <div class="brief-label">TOOLS USED</div>
+          <div class="brief-tools" id="briefTools">Python • Pandas • Matplotlib • Excel</div>
+
+          <button class="btn btn-primary brief-cta" id="briefOpenBtn" onclick="openProjectModal(0)">
+            OPEN FULL CASE STUDY →
+          </button>
+        </aside>
+        
+
+        <!-- Right Framed Screen Cards -->
+        <div class="projects-grid">
+          
+          <article class="project-card"
+                   data-category="DATA &amp; ANALYTICS"
+                   onmouseenter="updateBrief(0)"
+                   onclick="openProjectModal(0)">
+            <div>
+              <div class="screen-bar">
+                <span class="screen-dots"><i></i><i></i></span>
+                <span class="screen-notch"></span>
+                <span class="screen-cat">DATA &amp; ANALYTICS</span>
+              </div>
+
+              <div class="screen-visual" data-visual="dashboard"></div>
+
+              <h3 class="project-title">Social Impact &amp; CSR Metrics Dashboard</h3>
+              <p class="project-desc">Structured exploratory dashboard organizing community outreach indicators and volunteer participation trends.</p>
+
+              <div class="tag-row">
+                
+                <span class="tag">Python</span>
+                
+                <span class="tag">Pandas</span>
+                
+                <span class="tag">Matplotlib</span>
+                
+                <span class="tag">Excel</span>
+                
+              </div>
+            </div>
+
+            <div class="project-card-foot">
+              <span>VIEW CASE STUDY</span>
+              <span>→</span>
+            </div>
+          </article>
+          
+          <article class="project-card"
+                   data-category="AI &amp; ML"
+                   onmouseenter="updateBrief(1)"
+                   onclick="openProjectModal(1)">
+            <div>
+              <div class="screen-bar">
+                <span class="screen-dots"><i></i><i></i></span>
+                <span class="screen-notch"></span>
+                <span class="screen-cat">AI &amp; ML</span>
+              </div>
+
+              <div class="screen-visual" data-visual="nlp"></div>
+
+              <h3 class="project-title">Student Academic &amp; Research Assistant NLP Prototype</h3>
+              <p class="project-desc">Introductory NLP workflow that summarizes reading notes and surfaces key concepts from academic papers.</p>
+
+              <div class="tag-row">
+                
+                <span class="tag">Python</span>
+                
+                <span class="tag">Scikit-learn</span>
+                
+                <span class="tag">NLP Basics</span>
+                
+              </div>
+            </div>
+
+            <div class="project-card-foot">
+              <span>VIEW CASE STUDY</span>
+              <span>→</span>
+            </div>
+          </article>
+          
+          <article class="project-card"
+                   data-category="RESEARCH"
+                   onmouseenter="updateBrief(2)"
+                   onclick="openProjectModal(2)">
+            <div>
+              <div class="screen-bar">
+                <span class="screen-dots"><i></i><i></i></span>
+                <span class="screen-notch"></span>
+                <span class="screen-cat">RESEARCH</span>
+              </div>
+
+              <div class="screen-visual" data-visual="survey"></div>
+
+              <h3 class="project-title">NGO Community Survey &amp; Trend Analysis</h3>
+              <p class="project-desc">End-to-end survey cleaning, thematic coding, and trend synthesis for a community education initiative.</p>
+
+              <div class="tag-row">
+                
+                <span class="tag">Survey Design</span>
+                
+                <span class="tag">Python</span>
+                
+                <span class="tag">Statistics</span>
+                
+                <span class="tag">Reporting</span>
+                
+              </div>
+            </div>
+
+            <div class="project-card-foot">
+              <span>VIEW CASE STUDY</span>
+              <span>→</span>
+            </div>
+          </article>
+          
+          <article class="project-card"
+                   data-category="DATA &amp; ANALYTICS"
+                   onmouseenter="updateBrief(3)"
+                   onclick="openProjectModal(3)">
+            <div>
+              <div class="screen-bar">
+                <span class="screen-dots"><i></i><i></i></span>
+                <span class="screen-notch"></span>
+                <span class="screen-cat">DATA &amp; ANALYTICS</span>
+              </div>
+
+              <div class="screen-visual" data-visual="regression"></div>
+
+              <h3 class="project-title">Predictive Exploratory Analysis on Public Datasets</h3>
+              <p class="project-desc">Statistical exploration and baseline regression/classification models built on open public datasets.</p>
+
+              <div class="tag-row">
+                
+                <span class="tag">Python</span>
+                
+                <span class="tag">NumPy</span>
+                
+                <span class="tag">Scikit-learn</span>
+                
+                <span class="tag">Seaborn</span>
+                
+              </div>
+            </div>
+
+            <div class="project-card-foot">
+              <span>VIEW CASE STUDY</span>
+              <span>→</span>
+            </div>
+          </article>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDY MODAL -->
+  <div class="modal-overlay" id="projectModal" onclick="if(event.target === this) closeProjectModal()">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeProjectModal()" aria-label="Close">×</button>
+      <span class="brief-pill" id="modalCat"></span>
+      <h3 class="modal-title" id="modalTitle"></h3>
+      <div class="modal-visual" id="modalVisual"></div>
+
+      <div class="modal-two-col">
+        <div class="modal-card">
+          <div class="modal-card-label">PROBLEM STATEMENT</div>
+          <p id="modalProblem"></p>
+        </div>
+        <div class="modal-card">
+          <div class="modal-card-label">APPROACH</div>
+          <p id="modalApproach"></p>
+        </div>
+      </div>
+
+      <div class="modal-card-rose">
+        <div class="modal-card-label">KEY LEARNINGS</div>
+        <p id="modalLearnings"></p>
+      </div>
+
+      <div class="modal-footer">
+        <div class="modal-tags" id="modalTags"></div>
+        <div class="modal-meta">
+          <span id="modalFooterNote"></span>
+          <a id="modalGithub" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.45rem 0.9rem; font-size: 0.7rem;">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <section id="skills" class="grid-light">
+    <div class="container">
+      <div class="skills-frame">
+        <div class="skills-head">
+          <div>
+            <div class="skills-kicker">05 // TOOLKIT &amp; FOUNDATIONS</div>
+            <h2 class="skills-title">SKILLS &amp; <span>Craft</span></h2>
+          </div>
+          <p class="skills-hint">
+            Click any skill tag to read my Notebook Margin Note on how I'm learning and applying it.
+          </p>
+          <!-- INTERACTIVE SKILLS BEEHIVE -->
+          <div id="skillsHive" class="beehive-anchor skills-hive" onclick="toggleSkillsHive()" title="Click to release or recall all skill bees!">
+            <svg class="hive-svg" viewBox="0 0 80 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M40 4 L40 16" stroke="#EFE4BE" stroke-width="4" stroke-linecap="round"/>
+              <ellipse cx="40" cy="24" rx="16" ry="8" fill="#E2B857" stroke="#26140E" stroke-width="2.5"/>
+              <ellipse cx="40" cy="36" rx="24" ry="10" fill="#D4A343" stroke="#26140E" stroke-width="2.5"/>
+              <ellipse cx="40" cy="49" rx="28" ry="11" fill="#E2B857" stroke="#26140E" stroke-width="2.5"/>
+              <ellipse cx="40" cy="62" rx="24" ry="10" fill="#C99335" stroke="#26140E" stroke-width="2.5"/>
+              <ellipse cx="40" cy="72" rx="16" ry="7" fill="#B57E28" stroke="#26140E" stroke-width="2.5"/>
+              <path d="M33 62 C33 54, 47 54, 47 62 L47 68 L33 68 Z" fill="#26140E"/>
+            </svg>
+            <span class="hive-badge" id="skillsHiveLabel">CLICK TO RELEASE BEES</span>
+          </div>
+        </div>
+
+        <div class="skills-grid">
+          
+          
+          <div class="skill-box">
+            <div class="skill-box-title">PROGRAMMING &amp; DATA</div>
+            <div class="skill-pills">
+              
+              <button type="button"
+                      class="skill-pill pill-cream active-skill"
+                      data-skill-name="Python"
+                      data-skill-note="My primary language in B.Sc. coursework—writing clean scripts for data cleaning, exploratory notebooks, and introductory machine learning labs."
+                      onclick="selectSkill(this)">
+                Python
+              </button>
+              
+              <button type="button"
+                      class="skill-pill pill-cream "
+                      data-skill-name="SQL"
+                      data-skill-note="Writing structured queries, joins, and aggregations to extract clean subsets from relational datasets for analysis."
+                      onclick="selectSkill(this)">
+                SQL
+              </button>
+              
+              <button type="button"
+                      class="skill-pill pill-cream "
+                      data-skill-name="Pandas &amp; NumPy"
+                      data-skill-note="Cleaning messy real-world spreadsheets, reshaping tables, and running fast vectorized calculations in Python."
+                      onclick="selectSkill(this)">
+                Pandas &amp; NumPy
+              </button>
+              
+              <button type="button"
+                      class="skill-pill pill-cream "
+                      data-skill-name="Jupyter Notebooks"
+                      data-skill-note="Documenting step-by-step exploratory workflows so code, charts, and analytical reasoning stay together clearly."
+                      onclick="selectSkill(this)">
+                Jupyter Notebooks
+              </button>
+              
+            </div>
+          </div>
+          
+          
+          <div class="skill-box">
+            <div class="skill-box-title">AI &amp; MACHINE LEARNING</div>
+            <div class="skill-pills">
+              
+              <button type="button"
+                      class="skill-pill pill-rose "
+                      data-skill-name="Supervised ML Basics"
+                      data-skill-note="Building strong intuition around regression, classification, train/test splits, and honest model evaluation."
+                      onclick="selectSkill(this)">
+                Supervised ML Basics
+              </button>
+              
+              <button type="button"
+                      class="skill-pill pill-rose "
+                      data-skill-name="Scikit-learn"
+                      data-skill-note="Implementing baseline machine learning pipelines, feature preprocessing, and cross-validation in coursework labs."
+                      onclick="selectSkill(this)">
+                Scikit-learn
+              </button>
+              
+              <button type="button"
+                      class="skill-pill pill-rose "
+                      data-skill-name="NLP Fundamentals"
+                      data-skill-note="Exploring tokenization, TF-IDF, and text summarization workflows to organize dense academic readings and notes."
+                      onclick="selectSkill(this)">
+                NLP Fundamentals
+              </button>
+              
+              <button type="button"
+                      class="skill-pill pill-rose "
+                      data-skill-name="Probability &amp; Statistics"
+                      data-skill-note="Grounding every chart and model in distributions, hypothesis testing, and careful statistical reasoning."
+                      onclick="selectSkill(this)">
+                Probability &amp; Statistics
+              </button>
+              
+            </div>
+          </div>
+          
+          
+          <div class="skill-box">
+            <div class="skill-box-title">ANALYTICS &amp; VISUALIZATION</div>
+            <div class="skill-pills">
+              
+              <button type="button"
+                      class="skill-pill pill-gold "
+                      data-skill-name="Exploratory Data Analysis"
+                      data-skill-note="Checking distributions, outliers, and missing values first to understand what a dataset can—and cannot—say."
+                      onclick="selectSkill(this)">
+                Exploratory Data Analysis
+              </button>
+              
+              <button type="button"
+                      class="skill-pill pill-gold "
+                      data-skill-name="Matplotlib &amp; Seaborn"
+                      data-skill-note="Crafting clean, legible charts and distribution plots that communicate trends without visual clutter."
+                      onclick="selectSkill(this)">
+                Matplotlib &amp; Seaborn
+              </button>
+              
+              <button type="button"
+                      class="skill-pill pill-gold "
+                      data-skill-name="Excel &amp; Spreadsheets"
+                      data-skill-note="Structuring outreach logs, pivot summaries, and clean tracking sheets for CSR and NGO teams."
+                      onclick="selectSkill(this)">
+                Excel &amp; Spreadsheets
+              </button>
+              
+              <button type="button"
+                      class="skill-pill pill-gold "
+                      data-skill-name="Data Storytelling"
+                      data-skill-note="Translating analytical findings into clear, decision-ready narratives for non-technical audiences."
+                      onclick="selectSkill(this)">
+                Data Storytelling
+              </button>
+              
+            </div>
+          </div>
+          
+          
+          <div class="skill-box">
+            <div class="skill-box-title">RESEARCH &amp; STRATEGY</div>
+            <div class="skill-pills">
+              
+              <button type="button"
+                      class="skill-pill pill-ivory "
+                      data-skill-name="Survey &amp; Field Research"
+                      data-skill-note="Designing clear, unbiased questionnaires and organizing grassroots community feedback for structured analysis."
+                      onclick="selectSkill(this)">
+                Survey &amp; Field Research
+              </button>
+              
+              <button type="button"
+                      class="skill-pill pill-ivory "
+                      data-skill-name="Literature Synthesis"
+                      data-skill-note="Distilling academic papers, reports, and qualitative inputs into concise, readable briefs."
+                      onclick="selectSkill(this)">
+                Literature Synthesis
+              </button>
+              
+              <button type="button"
+                      class="skill-pill pill-ivory "
+                      data-skill-name="Business Communication"
+                      data-skill-note="Writing structured updates, outreach notes, and presentations across academic and business contexts."
+                      onclick="selectSkill(this)">
+                Business Communication
+              </button>
+              
+              <button type="button"
+                      class="skill-pill pill-ivory "
+                      data-skill-name="Cross-Functional Teamwork"
+                      data-skill-note="Collaborating across time zones and disciplines—from remote US teams to local CSR and NGO volunteers."
+                      onclick="selectSkill(this)">
+                Cross-Functional Teamwork
+              </button>
+              
+            </div>
+          </div>
+          
+        </div>
+
+        
+        <div class="margin-note-box">
+          <div class="margin-note-left">
+            <div class="margin-star">★</div>
+            <div>
+              <div class="margin-label">NOTEBOOK MARGIN NOTE</div>
+              <div class="margin-skill-name" id="marginSkillName">Python</div>
+            </div>
+          </div>
+          <p class="margin-note-text" id="marginSkillNote">My primary language in B.Sc. coursework—writing clean scripts for data cleaning, exploratory notebooks, and introductory machine learning labs.</p>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" class="grid-light" style="padding-bottom: 2rem;">
+    <div class="container" style="padding-top: 1rem;">
+      <div class="certs-head">
+        <div>
+          <div class="certs-kicker">06 // CREDENTIALS &amp; COURSEWORK</div>
+          <h2 class="certs-title">CERTIFICATIONS</h2>
+        </div>
+        <div class="certs-hint">Click "Preview Certificate" to view credential details.</div>
+      </div>
+
+      <div class="certs-grid">
+        
+        <article class="cert-card">
+          <div>
+            <div class="cert-top">
+              <span class="cert-year">2025</span>
+              <span class="cert-star">★</span>
+            </div>
+            <h3 class="cert-title">Data Analytics Foundations</h3>
+            <div class="cert-issuer">Structured Coursework &amp; Online Credential</div>
+          </div>
+          <button type="button"
+                  class="cert-btn"
+                  data-cert-index="0"
+                  onclick="openCertModal(Number(this.dataset.certIndex))">
+            PREVIEW CERTIFICATE →
+          </button>
+        </article>
+        
+        <article class="cert-card">
+          <div>
+            <div class="cert-top">
+              <span class="cert-year">2025</span>
+              <span class="cert-star">★</span>
+            </div>
+            <h3 class="cert-title">Python for Data Science</h3>
+            <div class="cert-issuer">Applied Programming Track</div>
+          </div>
+          <button type="button"
+                  class="cert-btn"
+                  data-cert-index="1"
+                  onclick="openCertModal(Number(this.dataset.certIndex))">
+            PREVIEW CERTIFICATE →
+          </button>
+        </article>
+        
+        <article class="cert-card">
+          <div>
+            <div class="cert-top">
+              <span class="cert-year">2026</span>
+              <span class="cert-star">★</span>
+            </div>
+            <h3 class="cert-title">AI &amp; Machine Learning Fundamentals</h3>
+            <div class="cert-issuer">Introductory AI Specialization</div>
+          </div>
+          <button type="button"
+                  class="cert-btn"
+                  data-cert-index="2"
+                  onclick="openCertModal(Number(this.dataset.certIndex))">
+            PREVIEW CERTIFICATE →
+          </button>
+        </article>
+        
+        <article class="cert-card">
+          <div>
+            <div class="cert-top">
+              <span class="cert-year">2026</span>
+              <span class="cert-star">★</span>
+            </div>
+            <h3 class="cert-title">Research Methodology &amp; Data Ethics</h3>
+            <div class="cert-issuer">Academic &amp; Field Research Workshop</div>
+          </div>
+          <button type="button"
+                  class="cert-btn"
+                  data-cert-index="3"
+                  onclick="openCertModal(Number(this.dataset.certIndex))">
+            PREVIEW CERTIFICATE →
+          </button>
+        </article>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATE PREVIEW MODAL -->
+  <div class="modal-overlay" id="certModal" onclick="if(event.target === this) closeCertModal()">
+    <div class="cert-modal-box">
+      <button class="modal-close" onclick="closeCertModal()" aria-label="Close">×</button>
+      <div class="cert-modal-inner">
+        <div class="cert-modal-top">
+          <span id="certModalHeader">CREDENTIAL PREVIEW</span>
+          <span style="color: var(--gold); font-size: 1.2rem;">★</span>
+        </div>
+
+        <div class="cert-awarded">AWARDED TO NAVYA SINGH</div>
+        <h3 class="cert-modal-title" id="certModalTitle"></h3>
+        <div class="cert-modal-issuer" id="certModalIssuer"></div>
+        <p class="cert-modal-desc" id="certModalDesc"></p>
+
+        <!-- Real Uploaded Certificate Preview (appears automatically once you add a file in data.py) -->
+        <div class="cert-real-preview" id="certRealPreview"></div>
+
+        <div class="cert-modal-tags" id="certModalTags"></div>
+
+        <div class="cert-modal-actions">
+          <a id="certOpenFileBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display: none; font-size: 0.72rem;">Open Full Certificate ↗</a>
+          <a id="certVerifyBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="display: none; font-size: 0.72rem;">Verify Credential ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact" class="grid-dark" style="padding: 4.5rem 1.5rem 5.5rem;">
+    <div class="container" style="padding: 0;">
+      <div class="postcard-outer">
+        <div class="postcard">
+          <div class="postcard-stamp"></div>
+
+          <div>
+            <div class="postcard-kicker">07 // STATIONERY POSTCARD</div>
+            <h2 class="postcard-heading">Have something in mind?</h2>
+            <div class="postcard-script">Let's connect.</div>
+            <p class="postcard-desc">
+              Whether it's an undergraduate internship, a data &amp; AI research collaboration, a student initiative, or a conversation around technology and social impact—I'd love to hear from you.
+            </p>
+
+            <div class="contact-item">
+              <div>
+                <div class="contact-label">DIRECT EMAIL</div>
+                <div class="contact-value" id="emailText">nays280906@gmail.com</div>
+              </div>
+              <button type="button" class="copy-pill" onclick="copyEmail(this)">COPY EMAIL</button>
+            </div>
+
+            
+            <a href="https://www.linkedin.com/in/navya-singh-2b2927387/" target="_blank" rel="noopener noreferrer" class="contact-item">
+              <div>
+                <div class="contact-label">LINKEDIN</div>
+                <div class="contact-value">www.linkedin.com/in/navya-singh-2b2927387/</div>
+              </div>
+              <span style="font-size: 1.1rem; color: var(--roast);">↗</span>
+            </a>
+            
+
+            <div class="contact-location">
+              <span class="location-dot"></span>
+              <span>IIM Sambalpur, Odisha, India • Open to Remote &amp; On-Site Roles</span>
+            </div>
+          </div>
+
+          <form class="postcard-form-card" onsubmit="event.preventDefault(); alert('Thanks for reaching out! You can also email nays280906@gmail.com directly.'); this.reset();">
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="contactName">NAME</label>
+                <input id="contactName" type="text" placeholder="Your full name" required />
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">EMAIL</label>
+                <input id="contactEmail" type="email" placeholder="you@example.com" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contactTopic">TOPIC</label>
+              <select id="contactTopic">
+                <option>Internship Opportunity</option>
+                <option>Data &amp; AI Research Collaboration</option>
+                <option>Student Initiative / CSR</option>
+                <option>General Hello</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="contactMsg">MESSAGE</label>
+              <textarea id="contactMsg" rows="4" placeholder="Write a quick note about your idea, role, or project..." required></textarea>
+            </div>
+
+            <div class="form-foot">
+              <span class="form-note">Usually responds within 1–2 days.</span>
+              <button type="submit" class="send-pill">SEND POSTCARD →</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-script">Navya Singh</span>
+        <span class="footer-meta">• © 2026 • IIM SAMBALPUR</span>
+      </div>
+
+      <div class="footer-links">
+        <a href="#about">ABOUT</a>
+        <a href="#experience">EXPERIENCE</a>
+        <a href="#projects">PROJECTS</a>
+        <a href="#skills">SKILLS</a>
+        <a href="#certifications">CERTS</a>
+        <a href="#contact">CONTACT</a>
+      </div>
+
+      <a href="#home" class="top-pill">BACK TO TOP ↑</a>
+    </div>
+  </footer>
+    © Navya Singh • IIM Sambalpur (2025–2029)
+  </footer>
+
+  <script>
+    function filterProjects(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.project-card').forEach(card => {
+        card.style.display = (category === 'all' || card.dataset.category === category) ? 'flex' : 'none';
+      });
+    }
+
+    function copyEmail() {
+      const email = document.getElementById('emailText').innerText;
+      navigator.clipboard.writeText(email).then(() => alert('Copied: ' + email));
+    }
+
+    function switchAboutTab(tabName, btn) {
+      document.querySelectorAll('.about-tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.about-tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + tabName).classList.add('active');
+    }
+    function filterExperience(category, btn) {
+      document.querySelectorAll('.exp-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.exp-card').forEach(card => {
+        card.style.display = (category === 'all' || card.dataset.expCat === category) ? 'block' : 'none';
+      });
+    }
+
+    function toggleTakeaways(btn) {
+      const card = btn.closest('.exp-card');
+      const box = card.querySelector('.exp-takeaways');
+      if (!box) return;
+      const isOpen = box.classList.toggle('open');
+      btn.textContent = isOpen ? 'HIDE TAKEAWAYS -' : 'READ KEY TAKEAWAYS +';
+    }
+    const PROJECTS_DATA = [{"approach": "Cleaned and standardized multi-sheet outreach logs using Python and Pandas, grouped indicators by region and program type, and created clear visual summaries for coordinators.", "category": "DATA \u0026 ANALYTICS", "description": "Structured exploratory dashboard organizing community outreach indicators and volunteer participation trends.", "footer_note": "Undergraduate Project \u2022 IIM Sambalpur", "github_url": "https://github.com/nays280906-beep", "learnings": "Learned how thoughtful metric definitions and clean visual hierarchy matter far more than cluttered charts when presenting to non-technical teams.", "live_url": "", "problem": "Grassroots CSR and outreach activities often track attendance and beneficiary feedback across disconnected spreadsheets, making quarterly reviews slow and unclear.", "tags": ["Python", "Pandas", "Matplotlib", "Excel"], "title": "Social Impact \u0026 CSR Metrics Dashboard", "visual": "dashboard"}, {"approach": "Built a lightweight text-preprocessing and keyword-extraction pipeline in Python to cluster key phrases and generate structured study summaries.", "category": "AI \u0026 ML", "description": "Introductory NLP workflow that summarizes reading notes and surfaces key concepts from academic papers.", "footer_note": "Undergraduate Project \u2022 IIM Sambalpur", "github_url": "https://github.com/nays280906-beep", "learnings": "Gained hands-on intuition for tokenization, TF-IDF weighting, and evaluating whether automated summaries actually preserve academic nuance.", "live_url": "", "problem": "Reviewing dense coursework readings and research PDFs takes hours when trying to extract core definitions and recurring themes.", "tags": ["Python", "Scikit-learn", "NLP Basics"], "title": "Student Academic \u0026 Research Assistant NLP Prototype", "visual": "nlp"}, {"approach": "Standardized response scales, coded qualitative themes, and ran descriptive statistical breakdowns to highlight participation gaps.", "category": "RESEARCH", "description": "End-to-end survey cleaning, thematic coding, and trend synthesis for a community education initiative.", "footer_note": "Undergraduate Project \u2022 IIM Sambalpur", "github_url": "https://github.com/nays280906-beep", "learnings": "Saw first-hand how good questionnaire design before data collection saves hours of messy cleaning afterward.", "live_url": "", "problem": "Field surveys collected by volunteers contained inconsistent formats and open-ended responses that were difficult to turn into actionable insights.", "tags": ["Survey Design", "Python", "Statistics", "Reporting"], "title": "NGO Community Survey \u0026 Trend Analysis", "visual": "survey"}, {"approach": "Performed distribution checks, correlation analysis, and trained interpretable baseline models with cross-validation to compare error metrics.", "category": "DATA \u0026 ANALYTICS", "description": "Statistical exploration and baseline regression/classification models built on open public datasets.", "footer_note": "Undergraduate Project \u2022 IIM Sambalpur", "github_url": "https://github.com/nays280906-beep", "learnings": "Strengthened my habits around train/test splits, avoiding data leakage, and explaining model limitations honestly.", "live_url": "", "problem": "Understanding which features actually drive real-world outcomes requires systematic exploratory analysis before jumping into modeling.", "tags": ["Python", "NumPy", "Scikit-learn", "Seaborn"], "title": "Predictive Exploratory Analysis on Public Datasets", "visual": "regression"}];
+
+    const PROJECT_SVGS = {
+      dashboard: `<svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="14" width="280" height="32" rx="8" fill="#FAF6EC"/>
+        <rect x="34" y="25" width="110" height="10" rx="5" fill="#3B2118"/>
+        <circle cx="278" cy="30" r="7" fill="#D6A1A8"/>
+        <rect x="20" y="56" width="132" height="44" rx="8" fill="#EFE4BE"/>
+        <rect x="34" y="68" width="60" height="8" rx="4" fill="#633D2E"/>
+        <rect x="34" y="82" width="90" height="8" rx="4" fill="#3B2118"/>
+        <rect x="168" y="56" width="132" height="44" rx="8" fill="#D6A1A8"/>
+        <rect x="182" y="68" width="60" height="8" rx="4" fill="#3B2118"/>
+        <rect x="182" y="82" width="90" height="8" rx="4" fill="#3B2118"/>
+        <rect x="20" y="110" width="280" height="76" rx="10" fill="#FAF6EC"/>
+        <rect x="46" y="148" width="28" height="28" rx="4" fill="#D6A1A8"/>
+        <rect x="92" y="132" width="28" height="44" rx="4" fill="#94803F"/>
+        <rect x="138" y="140" width="28" height="36" rx="4" fill="#633D2E"/>
+        <rect x="184" y="124" width="28" height="52" rx="4" fill="#3B2118"/>
+        <rect x="230" y="130" width="28" height="46" rx="4" fill="#D6A1A8"/>
+        <path d="M58 142 L106 124 L152 132 L198 118 L244 124" stroke="#94803F" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>`,
+      nlp: `<svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="160" y1="95" x2="72" y2="52" stroke="#EFE4BE" stroke-width="2.5"/>
+        <line x1="160" y1="95" x2="248" y2="52" stroke="#EFE4BE" stroke-width="2.5"/>
+        <line x1="160" y1="95" x2="82" y2="144" stroke="#D6A1A8" stroke-width="2.5"/>
+        <line x1="160" y1="95" x2="238" y2="144" stroke="#D6A1A8" stroke-width="2.5"/>
+        <circle cx="160" cy="95" r="32" fill="#D6A1A8"/>
+        <circle cx="160" cy="95" r="24" fill="#FAF6EC"/>
+        <text x="160" y="103" text-anchor="middle" fill="#3B2118" font-size="24">★</text>
+        <circle cx="72" cy="52" r="16" fill="#EFE4BE"/>
+        <circle cx="248" cy="52" r="16" fill="#D6A1A8"/>
+        <circle cx="82" cy="144" r="16" fill="#94803F"/>
+        <circle cx="238" cy="144" r="16" fill="#EFE4BE"/>
+        <rect x="100" y="170" width="120" height="16" rx="8" fill="#EFE4BE"/>
+        <rect x="118" y="175" width="84" height="6" rx="3" fill="#3B2118"/>
+      </svg>`,
+      survey: `<svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="44" y="22" width="232" height="158" rx="14" fill="#FAF6EC"/>
+        <rect x="116" y="12" width="88" height="20" rx="6" fill="#3B2118"/>
+        <rect x="68" y="54" width="76" height="9" rx="4.5" fill="#3B2118"/>
+        <rect x="68" y="70" width="184" height="12" rx="6" fill="#EFE4BE"/>
+        <rect x="68" y="70" width="136" height="12" rx="6" fill="#D6A1A8"/>
+        <rect x="68" y="96" width="60" height="9" rx="4.5" fill="#3B2118"/>
+        <rect x="68" y="112" width="184" height="12" rx="6" fill="#EFE4BE"/>
+        <rect x="68" y="112" width="108" height="12" rx="6" fill="#94803F"/>
+        <rect x="68" y="138" width="160" height="12" rx="6" fill="#3B2118"/>
+        <circle cx="244" cy="154" r="12" fill="#94803F"/>
+        <path d="M239 154 L243 158 L250 150" stroke="#FAF6EC" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>`,
+      regression: `<svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="32" y="20" width="256" height="160" rx="12" fill="#FAF6EC"/>
+        <line x1="60" y1="158" x2="262" y2="158" stroke="#3B2118" stroke-width="2.5"/>
+        <line x1="60" y1="158" x2="60" y2="40" stroke="#3B2118" stroke-width="2.5"/>
+        <path d="M72 148 L250 56" stroke="#D6A1A8" stroke-width="14" stroke-linecap="round" opacity="0.5"/>
+        <path d="M72 148 L250 56" stroke="#3B2118" stroke-width="2.5" stroke-dasharray="6 6"/>
+        <circle cx="88" cy="140" r="6" fill="#94803F"/>
+        <circle cx="114" cy="128" r="6" fill="#3B2118"/>
+        <circle cx="136" cy="112" r="6" fill="#FAF6EC" stroke="#3B2118" stroke-width="2.5"/>
+        <circle cx="164" cy="104" r="6" fill="#94803F"/>
+        <circle cx="188" cy="86" r="6" fill="#3B2118"/>
+        <circle cx="212" cy="80" r="6" fill="#FAF6EC" stroke="#3B2118" stroke-width="2.5"/>
+        <circle cx="236" cy="64" r="6" fill="#3B2118"/>
+      </svg>`
+    };
+
+    // Render SVG artwork into each project card on page load
+    document.querySelectorAll('.screen-visual').forEach(el => {
+      const key = el.dataset.visual || 'dashboard';
+      el.innerHTML = PROJECT_SVGS[key] || PROJECT_SVGS.dashboard;
+    });
+
+    function updateBrief(index) {
+      const p = PROJECTS_DATA[index];
+      if (!p) return;
+      document.getElementById('briefCat').textContent = p.category;
+      document.getElementById('briefTitle').textContent = p.title;
+      document.getElementById('briefConcept').textContent = p.description;
+      document.getElementById('briefTools').textContent = p.tags.join(' • ');
+      document.getElementById('briefOpenBtn').setAttribute('onclick', `openProjectModal(${index})`);
+    }
+
+    function openProjectModal(index) {
+      const p = PROJECTS_DATA[index];
+      if (!p) return;
+      document.getElementById('modalCat').textContent = p.category;
+      document.getElementById('modalTitle').textContent = p.title;
+      document.getElementById('modalVisual').innerHTML = PROJECT_SVGS[p.visual] || PROJECT_SVGS.dashboard;
+      document.getElementById('modalProblem').textContent = p.problem || p.description;
+      document.getElementById('modalApproach').textContent = p.approach || '';
+      document.getElementById('modalLearnings').textContent = p.learnings || '';
+      document.getElementById('modalFooterNote').textContent = p.footer_note || '';
+      document.getElementById('modalTags').innerHTML = p.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
+
+      const ghBtn = document.getElementById('modalGithub');
+      if (p.github_url) {
+        ghBtn.href = p.github_url;
+        ghBtn.style.display = 'inline-flex';
+      } else {
+        ghBtn.style.display = 'none';
+      }
+      document.getElementById('projectModal').classList.add('open');
+    }
+
+    function closeProjectModal() {
+      document.getElementById('projectModal').classList.remove('open');
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeProjectModal();
+    });
+
+    function selectSkill(btn) {
+      document.querySelectorAll('.skill-pill').forEach(p => p.classList.remove('active-skill'));
+      btn.classList.add('active-skill');
+      document.getElementById('marginSkillName').textContent = btn.dataset.skillName;
+      document.getElementById('marginSkillNote').textContent = btn.dataset.skillNote;
+    }
+
+    const CERTS_DATA = [{"description": "Covered data cleaning workflows, descriptive statistics, spreadsheet modeling, and communicating analytical findings clearly.", "file": "", "issuer": "Structured Coursework \u0026 Online Credential", "tags": ["Data Cleaning", "Spreadsheets", "Visualization"], "title": "Data Analytics Foundations", "verify_url": "", "year": "2025"}, {"description": "Hands-on Python programming focused on data structures, Pandas workflows, and writing clean analytical scripts.", "file": "", "issuer": "Applied Programming Track", "tags": ["Python", "Pandas", "Notebooks"], "title": "Python for Data Science", "verify_url": "", "year": "2025"}, {"description": "Core supervised learning concepts, model evaluation metrics, and introductory natural language processing workflows.", "file": "", "issuer": "Introductory AI Specialization", "tags": ["Machine Learning", "Scikit-learn", "NLP"], "title": "AI \u0026 Machine Learning Fundamentals", "verify_url": "", "year": "2026"}, {"description": "Structured survey design, qualitative synthesis, and ethical standards for community and organizational data collection.", "file": "", "issuer": "Academic \u0026 Field Research Workshop", "tags": ["Research Design", "Ethics", "Field Surveys"], "title": "Research Methodology \u0026 Data Ethics", "verify_url": "", "year": "2026"}];
+
+    function openCertModal(index) {
+      const c = CERTS_DATA[index];
+      if (!c) return;
+
+      document.getElementById('certModalHeader').textContent = `CREDENTIAL PREVIEW • ${c.year}`;
+      document.getElementById('certModalTitle').textContent = c.title;
+      document.getElementById('certModalIssuer').textContent = c.issuer;
+      document.getElementById('certModalDesc').textContent = c.description;
+      document.getElementById('certModalTags').innerHTML = c.tags
+        .map(t => `<span class="cert-modal-tag">${t}</span>`)
+        .join('');
+
+      const previewBox = document.getElementById('certRealPreview');
+      const openFileBtn = document.getElementById('certOpenFileBtn');
+      const verifyBtn = document.getElementById('certVerifyBtn');
+
+      if (c.file && c.file.trim() !== '') {
+        const fileUrl = `static/${c.file.trim()}`;
+        if (c.file.toLowerCase().endsWith('.pdf')) {
+          previewBox.innerHTML = `<iframe src="${fileUrl}" title="${c.title}"></iframe>`;
+        } else {
+          previewBox.innerHTML = `<img src="${fileUrl}" alt="${c.title} Certificate" />`;
+        }
+        previewBox.style.display = 'block';
+        openFileBtn.href = fileUrl;
+        openFileBtn.style.display = 'inline-flex';
+      } else {
+        previewBox.innerHTML = '';
+        previewBox.style.display = 'none';
+        openFileBtn.style.display = 'none';
+      }
+
+      if (c.verify_url && c.verify_url.trim() !== '') {
+        verifyBtn.href = c.verify_url;
+        verifyBtn.style.display = 'inline-flex';
+      } else {
+        verifyBtn.style.display = 'none';
+      }
+
+      document.getElementById('certModal').classList.add('open');
+    }
+
+    function closeCertModal() {
+      document.getElementById('certModal').classList.remove('open');
+    }
+
+    function copyEmail(btn) {
+      const email = document.getElementById('emailText').innerText;
+      navigator.clipboard.writeText(email).then(() => {
+        if (btn) {
+          btn.textContent = 'COPIED ✓';
+          setTimeout(() => btn.textContent = 'COPY EMAIL', 2000);
+        }
+      });
+    }
+    /* === BEEHIVE & SKILL BEES ENGINE === */
+    const BEE_SKILLS = [
+      
+        
+          "Python",
+        
+          "SQL",
+        
+          "Pandas \u0026 NumPy",
+        
+          "Jupyter Notebooks",
+        
+      
+        
+          "Supervised ML Basics",
+        
+          "Scikit-learn",
+        
+          "NLP Fundamentals",
+        
+          "Probability \u0026 Statistics",
+        
+      
+        
+          "Exploratory Data Analysis",
+        
+          "Matplotlib \u0026 Seaborn",
+        
+          "Excel \u0026 Spreadsheets",
+        
+          "Data Storytelling",
+        
+      
+        
+          "Survey \u0026 Field Research",
+        
+          "Literature Synthesis",
+        
+          "Business Communication",
+        
+          "Cross-Functional Teamwork",
+        
+      
+    ];
+
+    const beeLayer = document.getElementById('bee-flight-layer');
+    const heroHiveEl = document.getElementById('heroHive');
+    const skillsHiveEl = document.getElementById('skillsHive');
+    const skillsHiveLabel = document.getElementById('skillsHiveLabel');
+    const skillsSectionEl = document.getElementById('skills');
+
+    let hiveMode = 'migrating'; // 'migrating' | 'burst' | 'returning'
+    let activeBees = [];
+    let skillCursor = 0;
+    let lastSpawnTime = 0;
+    let lastFrameTime = performance.now();
+
+    function getDocCenter(el) {
+      const r = el.getBoundingClientRect();
+      return {
+        x: r.left + r.width / 2 + window.scrollX,
+        y: r.top + r.height / 2 + window.scrollY
+      };
+    }
+
+    function pulseHive(el) {
+      const svg = el.querySelector('.hive-svg');
+      if (!svg) return;
+      svg.classList.remove('hive-pulse');
+      void svg.offsetWidth;
+      svg.classList.add('hive-pulse');
+    }
+
+    function createBeeElement(skillName) {
+      const div = document.createElement('div');
+      div.className = 'skill-bee';
+      div.innerHTML = `
+        <span class="bee-label">${skillName}</span>
+        <svg class="bee-body-svg" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse class="bee-wing" cx="17" cy="9" rx="7" ry="5" fill="#FAF6EC" opacity="0.88" stroke="#3B2118" stroke-width="1.2"/>
+          <ellipse class="bee-wing" cx="24" cy="9" rx="6" ry="4.5" fill="#FAF6EC" opacity="0.88" stroke="#3B2118" stroke-width="1.2"/>
+          <ellipse cx="20" cy="19" rx="12" ry="8.5" fill="#F2C94C" stroke="#26140E" stroke-width="2"/>
+          <path d="M16 11.5 V26.5 M22 11 V27" stroke="#26140E" stroke-width="2.6"/>
+          <circle cx="28" cy="17.5" r="1.5" fill="#26140E"/>
+          <path d="M8 19 L4 19" stroke="#26140E" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      `;
+      beeLayer.appendChild(div);
+      return div;
+    }
+
+    function spawnMigratingBee() {
+      if (!BEE_SKILLS.length || !heroHiveEl || !skillsHiveEl) return;
+      const skill = BEE_SKILLS[skillCursor % BEE_SKILLS.length];
+      skillCursor++;
+
+      const start = getDocCenter(heroHiveEl);
+      const end = getDocCenter(skillsHiveEl);
+      const pageW = document.documentElement.clientWidth;
+
+      // Random graceful control points across the page
+      const cp1 = {
+        x: Math.max(80, Math.min(pageW - 80, pageW * (0.15 + Math.random() * 0.7))),
+        y: start.y + (end.y - start.y) * (0.22 + Math.random() * 0.18)
+      };
+      const cp2 = {
+        x: Math.max(80, Math.min(pageW - 80, pageW * (0.15 + Math.random() * 0.7))),
+        y: start.y + (end.y - start.y) * (0.62 + Math.random() * 0.18)
+      };
+
+      const el = createBeeElement(skill);
+      const bee = {
+        el,
+        mode: 'migrating',
+        t: 0,
+        duration: 45000 + Math.random() * 15000,
+        start, cp1, cp2, end,
+        wobblePhase: Math.random() * Math.PI * 2,
+        wobbleAmp: 14 + Math.random() * 14,
+        paused: false,
+        x: start.x,
+        y: start.y
+      };
+
+      el.addEventListener('mouseenter', () => { bee.paused = true; });
+      el.addEventListener('mouseleave', () => { bee.paused = false; });
+
+      activeBees.push(bee);
+      pulseHive(heroHiveEl);
+    }
+
+    function toggleSkillsHive() {
+      if (!skillsHiveEl || !skillsSectionEl) return;
+      pulseHive(skillsHiveEl);
+
+      if (hiveMode === 'migrating') {
+        // Clear migrating bees and spurt ALL skill bees out around the Skills section
+        activeBees.forEach(b => b.el.remove());
+        activeBees = [];
+        hiveMode = 'burst';
+        skillsHiveLabel.textContent = 'CLICK TO RECALL BEES';
+
+        const origin = getDocCenter(skillsHiveEl);
+        const secRect = skillsSectionEl.getBoundingClientRect();
+        const secLeft = secRect.left + window.scrollX;
+        const secTop = secRect.top + window.scrollY;
+        const secW = secRect.width;
+        const secH = secRect.height;
+
+        BEE_SKILLS.forEach((skill) => {
+          const el = createBeeElement(skill);
+
+          const padX = Math.min(120, secW * 0.14);
+          const padY = 95;
+          const targetX = secLeft + padX + Math.random() * Math.max(40, secW - padX * 2);
+          const targetY = secTop + padY + Math.random() * Math.max(40, secH - padY * 2);
+
+          const bee = {
+            el,
+            mode: 'burst',
+            t: 0,
+            duration: 1200 + Math.random() * 650,
+            startX: origin.x,
+            startY: origin.y,
+            targetX,
+            targetY,
+            x: origin.x,
+            y: origin.y,
+            bobPhase: Math.random() * Math.PI * 2,
+            paused: false
+          };
+          el.addEventListener('mouseenter', () => { bee.paused = true; });
+          el.addEventListener('mouseleave', () => { bee.paused = false; });
+          activeBees.push(bee);
+        });
+
+      } else if (hiveMode === 'burst') {
+        // Send all burst bees flying back into the Skills beehive
+        hiveMode = 'returning';
+        skillsHiveLabel.textContent = 'RETURNING TO HIVE...';
+        const dest = getDocCenter(skillsHiveEl);
+        activeBees.forEach(bee => {
+          bee.mode = 'returning';
+          bee.t = 0;
+          bee.duration = 750 + Math.random() * 400;
+          bee.startX = bee.x;
+          bee.startY = bee.y;
+          bee.targetX = dest.x;
+          bee.targetY = dest.y;
+          bee.paused = false;
+        });
+      }
+    }
+
+    function cubicBezier(p0, p1, p2, p3, t) {
+      const u = 1 - t;
+      return u * u * u * p0 + 3 * u * u * t * p1 + 3 * u * t * t * p2 + t * t * t * p3;
+    }
+
+    function animateBees(now) {
+      const dt = Math.min(50, now - lastFrameTime);
+      lastFrameTime = now;
+
+      // Spawn a new bee every 1 second while migrating
+      if (hiveMode === 'migrating' && now - lastSpawnTime >= 1000) {
+        lastSpawnTime = now;
+        spawnMigratingBee();
+      }
+
+      for (let i = activeBees.length - 1; i >= 0; i--) {
+        const b = activeBees[i];
+        if (!b.paused) {
+          b.t += dt / b.duration;
+        }
+
+        if (b.mode === 'migrating') {
+          const t = Math.min(1, b.t);
+          const bx = cubicBezier(b.start.x, b.cp1.x, b.cp2.x, b.end.x, t);
+          const by = cubicBezier(b.start.y, b.cp1.y, b.cp2.y, b.end.y, t);
+          const wobble = Math.sin(now * 0.006 + b.wobblePhase) * b.wobbleAmp * Math.sin(t * Math.PI);
+
+          b.x = bx + wobble;
+          b.y = by;
+
+          // Shrink smoothly when emerging and entering hives
+          const scale = t < 0.08 ? t / 0.08 : (t > 0.92 ? (1 - t) / 0.08 : 1);
+          b.el.style.transform = `translate3d(${b.x - 45}px, ${b.y - 25}px, 0) scale(${Math.max(0.05, scale)})`;
+
+          if (b.t >= 1) {
+            b.el.remove();
+            activeBees.splice(i, 1);
+            pulseHive(skillsHiveEl);
+          }
+        } else if (b.mode === 'burst') {
+          const t = Math.min(1, b.t);
+          const easeOut = 1 - Math.pow(1 - t, 3);
+          const bobX = Math.cos(now * 0.0025 + b.bobPhase) * 6;
+          const bobY = Math.sin(now * 0.0035 + b.bobPhase) * 7;
+
+          b.x = b.startX + (b.targetX - b.startX) * easeOut + (t >= 1 ? bobX : 0);
+          b.y = b.startY + (b.targetY - b.startY) * easeOut + (t >= 1 ? bobY : 0);
+          const scale = Math.min(1, t * 2.5);
+          b.el.style.transform = `translate3d(${b.x - 45}px, ${b.y - 25}px, 0) scale(${scale})`;
+        } else if (b.mode === 'returning') {
+          const t = Math.min(1, b.t);
+          const easeIn = t * t;
+          b.x = b.startX + (b.targetX - b.startX) * easeIn;
+          b.y = b.startY + (b.targetY - b.startY) * easeIn;
+          const scale = Math.max(0.05, 1 - t * 0.95);
+          b.el.style.transform = `translate3d(${b.x - 45}px, ${b.y - 25}px, 0) scale(${scale})`;
+
+          if (b.t >= 1) {
+            b.el.remove();
+            activeBees.splice(i, 1);
+            pulseHive(skillsHiveEl);
+          }
+        }
+      }
+
+      // Once all returning bees are back inside, restart the 1-second migration!
+      if (hiveMode === 'returning' && activeBees.length === 0) {
+        hiveMode = 'migrating';
+        lastSpawnTime = now;
+        skillsHiveLabel.textContent = 'CLICK TO RELEASE BEES';
+      }
+
+      requestAnimationFrame(animateBees);
+    }
+
+    requestAnimationFrame(animateBees);
+  </script>
+</body>
+</html>

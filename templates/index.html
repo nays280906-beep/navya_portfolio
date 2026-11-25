@@ -1825,10 +1825,150 @@
       .postcard-stamp { display: none; }
     }
 
+    /* === ANIMATED BEEHIVE & SKILL BEES === */
+    body { position: relative; }
+
+    #bee-flight-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 45;
+      overflow: hidden;
+    }
+
+    /* Beehives */
+    .beehive-anchor {
+      position: absolute;
+      z-index: 15;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      user-select: none;
+    }
+    .hero-hive {
+      top: 22px;
+      right: 4%;
+      cursor: default;
+    }
+    .skills-hive {
+      position: relative;
+      cursor: pointer;
+      padding: 0.4rem 0.7rem;
+      border-radius: 16px;
+      background: rgba(239, 228, 190, 0.08);
+      border: 1.5px dashed rgba(239, 228, 190, 0.35);
+      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    }
+    .skills-hive:hover {
+      transform: scale(1.07);
+      background: rgba(239, 228, 190, 0.16);
+      box-shadow: 0 0 22px rgba(244, 208, 111, 0.35);
+    }
+    .hive-svg {
+      width: 104px;
+      height: 104px;
+      transform-origin: top center;
+      animation: hiveSway 4s ease-in-out infinite;
+      filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.35));
+    }
+    .hive-pulse {
+      animation: hivePop 0.35s ease !important;
+    }
+    .hive-badge {
+      margin-top: 4px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--cream);
+      background: var(--roast);
+      border: 1px solid rgba(239, 228, 190, 0.35);
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    @keyframes hiveSway {
+      0%, 100% { transform: rotate(-2.5deg); }
+      50% { transform: rotate(2.5deg); }
+    }
+    @keyframes hivePop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.16); }
+      100% { transform: scale(1); }
+    }
+
+    /* Individual Flying Skill Bees */
+    .skill-bee {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: auto;
+      cursor: pointer;
+      will-change: transform, opacity;
+      transition: filter 0.2s ease;
+    }
+    .bee-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--roast);
+      background: var(--cream);
+      border: 1.5px solid var(--roast);
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      white-space: nowrap;
+      margin-bottom: 4px;
+      box-shadow: 2px 2px 0 rgba(38, 20, 14, 0.35);
+      transition: all 0.2s ease;
+    }
+    .bee-body-svg {
+      width: 48px;
+      height: 38px;
+      transition: transform 0.2s ease;
+    }
+    .bee-wing {
+      transform-origin: center bottom;
+      animation: wingFlutter 0.14s ease-in-out infinite alternate;
+    }
+    @keyframes wingFlutter {
+      from { transform: rotate(-18deg) scaleY(0.95); }
+      to { transform: rotate(18deg) scaleY(1.08); }
+    }
+
+    /* Hover Illumination */
+    .skill-bee:hover {
+      z-index: 90;
+      filter: drop-shadow(0 0 12px rgba(247, 213, 107, 0.95));
+    }
+    .skill-bee:hover .bee-label {
+      background: #FFF3B0;
+      color: #26140E;
+      border-color: #94803F;
+      box-shadow: 0 0 16px rgba(247, 213, 107, 0.95);
+      transform: scale(1.12);
+    }
+    .skill-bee:hover .bee-body-svg {
+      transform: scale(1.18);
+    }
+
+    @media (max-width: 720px) {
+      .hero-hive { top: 8px; right: 10px; }
+      .hive-svg { width: 56px; height: 56px; }
+    }
+
   
   </style>
 </head>
 <body>
+
+  <!-- FULL-PAGE BEE FLIGHT LAYER -->
+  <div id="bee-flight-layer" aria-hidden="true"></div>
 
   <!-- Navigation -->
   <nav>
@@ -1845,6 +1985,19 @@
 
   <!-- HERO -->
   <section id="home" class="hero-section grid-dark">
+    <!-- STARTING BEEHIVE -->
+    <div id="heroHive" class="beehive-anchor hero-hive" title="Skills flying out!">
+      <svg class="hive-svg" viewBox="0 0 80 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 4 L40 16" stroke="#633D2E" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="40" cy="24" rx="16" ry="8" fill="#E2B857" stroke="#3B2118" stroke-width="2.5"/>
+        <ellipse cx="40" cy="36" rx="24" ry="10" fill="#D4A343" stroke="#3B2118" stroke-width="2.5"/>
+        <ellipse cx="40" cy="49" rx="28" ry="11" fill="#E2B857" stroke="#3B2118" stroke-width="2.5"/>
+        <ellipse cx="40" cy="62" rx="24" ry="10" fill="#C99335" stroke="#3B2118" stroke-width="2.5"/>
+        <ellipse cx="40" cy="72" rx="16" ry="7" fill="#B57E28" stroke="#3B2118" stroke-width="2.5"/>
+        <path d="M33 62 C33 54, 47 54, 47 62 L47 68 L33 68 Z" fill="#26140E"/>
+      </svg>
+      <span class="hive-badge">SKILL HIVE</span>
+    </div>
     <div class="pass-wrapper">
       <!-- Floating Background Doodles -->
       <svg class="bg-doodle bg-doodle-1" viewBox="0 0 24 24" fill="#94803F">
@@ -2244,6 +2397,19 @@
           <p class="skills-hint">
             Click any skill tag to read my Notebook Margin Note on how I'm learning and applying it.
           </p>
+          <!-- INTERACTIVE SKILLS BEEHIVE -->
+          <div id="skillsHive" class="beehive-anchor skills-hive" onclick="toggleSkillsHive()" title="Click to release or recall all skill bees!">
+            <svg class="hive-svg" viewBox="0 0 80 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M40 4 L40 16" stroke="#EFE4BE" stroke-width="4" stroke-linecap="round"/>
+              <ellipse cx="40" cy="24" rx="16" ry="8" fill="#E2B857" stroke="#26140E" stroke-width="2.5"/>
+              <ellipse cx="40" cy="36" rx="24" ry="10" fill="#D4A343" stroke="#26140E" stroke-width="2.5"/>
+              <ellipse cx="40" cy="49" rx="28" ry="11" fill="#E2B857" stroke="#26140E" stroke-width="2.5"/>
+              <ellipse cx="40" cy="62" rx="24" ry="10" fill="#C99335" stroke="#26140E" stroke-width="2.5"/>
+              <ellipse cx="40" cy="72" rx="16" ry="7" fill="#B57E28" stroke="#26140E" stroke-width="2.5"/>
+              <path d="M33 62 C33 54, 47 54, 47 62 L47 68 L33 68 Z" fill="#26140E"/>
+            </svg>
+            <span class="hive-badge" id="skillsHiveLabel">CLICK TO RELEASE BEES</span>
+          </div>
         </div>
 
         <div class="skills-grid">
@@ -2652,6 +2818,240 @@
         }
       });
     }
+    /* === BEEHIVE & SKILL BEES ENGINE === */
+    const BEE_SKILLS = [
+      {% for group in skills %}
+        {% for s in group['items'] %}
+          {{ s.name | tojson }},
+        {% endfor %}
+      {% endfor %}
+    ];
+
+    const beeLayer = document.getElementById('bee-flight-layer');
+    const heroHiveEl = document.getElementById('heroHive');
+    const skillsHiveEl = document.getElementById('skillsHive');
+    const skillsHiveLabel = document.getElementById('skillsHiveLabel');
+    const skillsSectionEl = document.getElementById('skills');
+
+    let hiveMode = 'migrating'; // 'migrating' | 'burst' | 'returning'
+    let activeBees = [];
+    let skillCursor = 0;
+    let lastSpawnTime = 0;
+    let lastFrameTime = performance.now();
+
+    function getDocCenter(el) {
+      const r = el.getBoundingClientRect();
+      return {
+        x: r.left + r.width / 2 + window.scrollX,
+        y: r.top + r.height / 2 + window.scrollY
+      };
+    }
+
+    function pulseHive(el) {
+      const svg = el.querySelector('.hive-svg');
+      if (!svg) return;
+      svg.classList.remove('hive-pulse');
+      void svg.offsetWidth;
+      svg.classList.add('hive-pulse');
+    }
+
+    function createBeeElement(skillName) {
+      const div = document.createElement('div');
+      div.className = 'skill-bee';
+      div.innerHTML = `
+        <span class="bee-label">${skillName}</span>
+        <svg class="bee-body-svg" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse class="bee-wing" cx="17" cy="9" rx="7" ry="5" fill="#FAF6EC" opacity="0.88" stroke="#3B2118" stroke-width="1.2"/>
+          <ellipse class="bee-wing" cx="24" cy="9" rx="6" ry="4.5" fill="#FAF6EC" opacity="0.88" stroke="#3B2118" stroke-width="1.2"/>
+          <ellipse cx="20" cy="19" rx="12" ry="8.5" fill="#F2C94C" stroke="#26140E" stroke-width="2"/>
+          <path d="M16 11.5 V26.5 M22 11 V27" stroke="#26140E" stroke-width="2.6"/>
+          <circle cx="28" cy="17.5" r="1.5" fill="#26140E"/>
+          <path d="M8 19 L4 19" stroke="#26140E" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      `;
+      beeLayer.appendChild(div);
+      return div;
+    }
+
+    function spawnMigratingBee() {
+      if (!BEE_SKILLS.length || !heroHiveEl || !skillsHiveEl) return;
+      const skill = BEE_SKILLS[skillCursor % BEE_SKILLS.length];
+      skillCursor++;
+
+      const start = getDocCenter(heroHiveEl);
+      const end = getDocCenter(skillsHiveEl);
+      const pageW = document.documentElement.clientWidth;
+
+      // Random graceful control points across the page
+      const cp1 = {
+        x: Math.max(80, Math.min(pageW - 80, pageW * (0.15 + Math.random() * 0.7))),
+        y: start.y + (end.y - start.y) * (0.22 + Math.random() * 0.18)
+      };
+      const cp2 = {
+        x: Math.max(80, Math.min(pageW - 80, pageW * (0.15 + Math.random() * 0.7))),
+        y: start.y + (end.y - start.y) * (0.62 + Math.random() * 0.18)
+      };
+
+      const el = createBeeElement(skill);
+      const bee = {
+        el,
+        mode: 'migrating',
+        t: 0,
+        duration: 45000 + Math.random() * 15000,
+        start, cp1, cp2, end,
+        wobblePhase: Math.random() * Math.PI * 2,
+        wobbleAmp: 14 + Math.random() * 14,
+        paused: false,
+        x: start.x,
+        y: start.y
+      };
+
+      el.addEventListener('mouseenter', () => { bee.paused = true; });
+      el.addEventListener('mouseleave', () => { bee.paused = false; });
+
+      activeBees.push(bee);
+      pulseHive(heroHiveEl);
+    }
+
+    function toggleSkillsHive() {
+      if (!skillsHiveEl || !skillsSectionEl) return;
+      pulseHive(skillsHiveEl);
+
+      if (hiveMode === 'migrating') {
+        // Clear migrating bees and spurt ALL skill bees out around the Skills section
+        activeBees.forEach(b => b.el.remove());
+        activeBees = [];
+        hiveMode = 'burst';
+        skillsHiveLabel.textContent = 'CLICK TO RECALL BEES';
+
+        const origin = getDocCenter(skillsHiveEl);
+        const secRect = skillsSectionEl.getBoundingClientRect();
+        const secLeft = secRect.left + window.scrollX;
+        const secTop = secRect.top + window.scrollY;
+        const secW = secRect.width;
+        const secH = secRect.height;
+
+        BEE_SKILLS.forEach((skill) => {
+          const el = createBeeElement(skill);
+
+          const padX = Math.min(120, secW * 0.14);
+          const padY = 95;
+          const targetX = secLeft + padX + Math.random() * Math.max(40, secW - padX * 2);
+          const targetY = secTop + padY + Math.random() * Math.max(40, secH - padY * 2);
+
+          const bee = {
+            el,
+            mode: 'burst',
+            t: 0,
+            duration: 1200 + Math.random() * 650,
+            startX: origin.x,
+            startY: origin.y,
+            targetX,
+            targetY,
+            x: origin.x,
+            y: origin.y,
+            bobPhase: Math.random() * Math.PI * 2,
+            paused: false
+          };
+          el.addEventListener('mouseenter', () => { bee.paused = true; });
+          el.addEventListener('mouseleave', () => { bee.paused = false; });
+          activeBees.push(bee);
+        });
+
+      } else if (hiveMode === 'burst') {
+        // Send all burst bees flying back into the Skills beehive
+        hiveMode = 'returning';
+        skillsHiveLabel.textContent = 'RETURNING TO HIVE...';
+        const dest = getDocCenter(skillsHiveEl);
+        activeBees.forEach(bee => {
+          bee.mode = 'returning';
+          bee.t = 0;
+          bee.duration = 750 + Math.random() * 400;
+          bee.startX = bee.x;
+          bee.startY = bee.y;
+          bee.targetX = dest.x;
+          bee.targetY = dest.y;
+          bee.paused = false;
+        });
+      }
+    }
+
+    function cubicBezier(p0, p1, p2, p3, t) {
+      const u = 1 - t;
+      return u * u * u * p0 + 3 * u * u * t * p1 + 3 * u * t * t * p2 + t * t * t * p3;
+    }
+
+    function animateBees(now) {
+      const dt = Math.min(50, now - lastFrameTime);
+      lastFrameTime = now;
+
+      // Spawn a new bee every 1 second while migrating
+      if (hiveMode === 'migrating' && now - lastSpawnTime >= 1000) {
+        lastSpawnTime = now;
+        spawnMigratingBee();
+      }
+
+      for (let i = activeBees.length - 1; i >= 0; i--) {
+        const b = activeBees[i];
+        if (!b.paused) {
+          b.t += dt / b.duration;
+        }
+
+        if (b.mode === 'migrating') {
+          const t = Math.min(1, b.t);
+          const bx = cubicBezier(b.start.x, b.cp1.x, b.cp2.x, b.end.x, t);
+          const by = cubicBezier(b.start.y, b.cp1.y, b.cp2.y, b.end.y, t);
+          const wobble = Math.sin(now * 0.006 + b.wobblePhase) * b.wobbleAmp * Math.sin(t * Math.PI);
+
+          b.x = bx + wobble;
+          b.y = by;
+
+          // Shrink smoothly when emerging and entering hives
+          const scale = t < 0.08 ? t / 0.08 : (t > 0.92 ? (1 - t) / 0.08 : 1);
+          b.el.style.transform = `translate3d(${b.x - 45}px, ${b.y - 25}px, 0) scale(${Math.max(0.05, scale)})`;
+
+          if (b.t >= 1) {
+            b.el.remove();
+            activeBees.splice(i, 1);
+            pulseHive(skillsHiveEl);
+          }
+        } else if (b.mode === 'burst') {
+          const t = Math.min(1, b.t);
+          const easeOut = 1 - Math.pow(1 - t, 3);
+          const bobX = Math.cos(now * 0.0025 + b.bobPhase) * 6;
+          const bobY = Math.sin(now * 0.0035 + b.bobPhase) * 7;
+
+          b.x = b.startX + (b.targetX - b.startX) * easeOut + (t >= 1 ? bobX : 0);
+          b.y = b.startY + (b.targetY - b.startY) * easeOut + (t >= 1 ? bobY : 0);
+          const scale = Math.min(1, t * 2.5);
+          b.el.style.transform = `translate3d(${b.x - 45}px, ${b.y - 25}px, 0) scale(${scale})`;
+        } else if (b.mode === 'returning') {
+          const t = Math.min(1, b.t);
+          const easeIn = t * t;
+          b.x = b.startX + (b.targetX - b.startX) * easeIn;
+          b.y = b.startY + (b.targetY - b.startY) * easeIn;
+          const scale = Math.max(0.05, 1 - t * 0.95);
+          b.el.style.transform = `translate3d(${b.x - 45}px, ${b.y - 25}px, 0) scale(${scale})`;
+
+          if (b.t >= 1) {
+            b.el.remove();
+            activeBees.splice(i, 1);
+            pulseHive(skillsHiveEl);
+          }
+        }
+      }
+
+      // Once all returning bees are back inside, restart the 1-second migration!
+      if (hiveMode === 'returning' && activeBees.length === 0) {
+        hiveMode = 'migrating';
+        lastSpawnTime = now;
+        skillsHiveLabel.textContent = 'CLICK TO RELEASE BEES';
+      }
+
+      requestAnimationFrame(animateBees);
+    }
+
+    requestAnimationFrame(animateBees);
   </script>
 </body>
 </html>
